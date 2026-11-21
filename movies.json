@@ -1,31 +1,5 @@
 [
   {
-    "id": "tmdb-tv-65733",
-    "tmdbId": 65733,
-    "mediaType": "tv",
-    "title": "Doraemon",
-    "year": "2005",
-    "runtime": "1 Season",
-    "genres": [
-      "Action & Adventure",
-      "Animation",
-      "Comedy",
-      "Sci-Fi & Fantasy",
-      "Kids",
-      "Family"
-    ],
-    "mood": "",
-    "overview": "Robotic cat Doraemon is sent back in time from the 22nd century to protect 10-year-old Noby, a lazy and uncoordinated boy who is destined to have a tragic future. Doraemon can create secret gadgets from a pocket on his stomach, but they usually cause more bad than good because of Noby's propensity to misuse them.",
-    "poster": "https://image.tmdb.org/t/p/w500/9ZN1P32SHviL3SV51qLivxycvcx.jpg",
-    "backdrop": "https://image.tmdb.org/t/p/w1280/c2oiRa7V3bQzof4wVGzLXtWJ5QU.jpg",
-    "tmdbRating": 8.1,
-    "watched": false,
-    "rating1": null,
-    "rating2": null,
-    "note": "",
-    "addedAt": 1795284241286
-  },
-  {
     "id": "tmdb-movie-127380",
     "tmdbId": 127380,
     "mediaType": "movie",
