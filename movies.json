@@ -245,9 +245,9 @@
     "poster": "https://image.tmdb.org/t/p/w500/lOQqeKxZg12ZSn0qfHAOXOtbVFR.jpg",
     "backdrop": "https://image.tmdb.org/t/p/w1280/dLNbqq5YHJALCdQiEK0agiDfbNF.jpg",
     "tmdbRating": 6.6,
-    "watched": false,
-    "rating1": null,
-    "rating2": null,
+    "watched": true,
+    "rating1": 9,
+    "rating2": 7.5,
     "note": "",
     "addedAt": 1795282598995
   },
@@ -359,10 +359,10 @@
     "poster": "https://image.tmdb.org/t/p/w500/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg",
     "backdrop": "https://image.tmdb.org/t/p/w1280/p5ozvmdgsmbWe0H8Xk7Rc8SCwAB.jpg",
     "tmdbRating": 7.5,
-    "watched": false,
-    "rating1": null,
-    "rating2": null,
-    "note": "",
+    "watched": true,
+    "rating1": 10,
+    "rating2": 8.5,
+    "note": "You ate burnt popcorn",
     "addedAt": 1795282298995
   },
   {
@@ -381,9 +381,9 @@
     "poster": "https://image.tmdb.org/t/p/w500/2dlftyPz7mTYbrsPvTogyFmYd7d.jpg",
     "backdrop": "https://image.tmdb.org/t/p/w1280/cdYj6HFpKp5NTmLiHHbNEGSmDT4.jpg",
     "tmdbRating": 6.9,
-    "watched": false,
-    "rating1": null,
-    "rating2": null,
+    "watched": true,
+    "rating1": 10,
+    "rating2": 9,
     "note": "",
     "addedAt": 1795282238995
   },
@@ -451,8 +451,8 @@
     "tmdbRating": 7.1,
     "watched": false,
     "rating1": null,
-    "rating2": null,
-    "note": "",
+    "rating2": 6,
+    "note": "Disturbing",
     "addedAt": 1795282058995
   },
   {
