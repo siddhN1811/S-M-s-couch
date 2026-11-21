@@ -1,36 +1,36 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>S&M's Couch</title>
+  <title>S&M's couch ✿ Retro Film Diary</title>
 
-  <!-- Fonts: Inter for crisp UI, Playfair Display for editorial cinema headings -->
+  <!-- Whimsical & Retro Google Fonts: Fraunces, Fredoka, Space Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,500&family=Fredoka:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind CSS via CDN -->
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            serif: ['Fraunces', 'Georgia', 'serif'],
+            sans: ['Fredoka', 'ui-rounded', 'system-ui', 'sans-serif'],
+            mono: ['"Space Mono"', 'monospace'],
           },
           colors: {
-            cinema: {
-              bg: '#0e0f13',
-              surface: '#16181f',
-              elevated: '#1d202a',
-              border: '#262936',
-              muted: '#8d92a5',
-              rose: '#e58c9b',
-              amber: '#e8a87c',
-            }
+            paper: '#fff7eb',
+            cream: '#fffdf8',
+            ink: '#38263b',
+            inkSoft: '#6f5a75',
+            strawberry: '#ff9ebb',
+            coral: '#ff6f91',
+            buttercup: '#ffe184',
+            pistachio: '#a8e6cf',
+            lavender: '#d7c0ff',
           }
         }
       }
@@ -38,318 +38,482 @@
   </script>
 
   <style>
-    /* Base dark cinema theme and smooth scrolling */
+    /* =========================================================================
+       RETRO SCRAPBOOK & INDIE CINEMA STYLING
+       ========================================================================= */
+    :root {
+      --paper: #fff7eb;
+      --cream: #fffdf8;
+      --ink: #38263b;
+      --ink-soft: #6f5a75;
+      --strawberry: #ff9ebb;
+      --coral: #ff6f91;
+      --buttercup: #ffe184;
+      --pistachio: #a8e6cf;
+      --lavender: #d7c0ff;
+    }
+
     html, body {
-      background-color: #0e0f13;
-      color: #f3f1ee;
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      -webkit-font-smoothing: antialiased;
+      background-color: var(--paper);
+      /* Subtle vintage dot-grid paper pattern */
+      background-image:
+        radial-gradient(rgba(56, 38, 59, 0.11) 1.2px, transparent 1.2px),
+        radial-gradient(circle at 10% 8%, rgba(255, 158, 187, 0.22) 0%, transparent 32%),
+        radial-gradient(circle at 90% 10%, rgba(255, 225, 132, 0.25) 0%, transparent 30%),
+        radial-gradient(circle at 80% 85%, rgba(215, 192, 255, 0.2) 0%, transparent 35%);
+      background-size: 22px 22px, 100% 100%, 100% 100%, 100% 100%;
+      color: var(--ink);
+      font-family: 'Fredoka', ui-rounded, system-ui, sans-serif;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Subtle ambient glow at top of viewport */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0 0 auto 0;
-      height: 480px;
-      background: radial-gradient(ellipse 70% 50% at 20% 0%, rgba(229, 140, 155, 0.08), transparent 70%),
-                  radial-gradient(ellipse 60% 50% at 85% 0%, rgba(232, 168, 124, 0.07), transparent 70%);
+    /* Tactile Retro Borders & Hard Offset Shadows */
+    .retro-box {
+      border: 2px solid var(--ink);
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    .retro-box-sm {
+      border: 2px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+
+    .retro-btn {
+      border: 2px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
+      transition: transform 0.12s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.12s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.15s ease;
+    }
+    .retro-btn:hover:not(:disabled) {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+    .retro-btn:active:not(:disabled) {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--ink);
+    }
+    .retro-btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .retro-card {
+      border: 2px solid var(--ink);
+      box-shadow: 4px 4px 0 var(--ink);
+      transition: transform 0.16s ease, box-shadow 0.16s ease;
+    }
+    .retro-card:hover {
+      transform: translate(-2px, -3px);
+      box-shadow: 6px 7px 0 var(--ink);
+    }
+
+    .retro-input {
+      border: 2px solid var(--ink);
+      background-color: var(--cream);
+      color: var(--ink);
+      transition: box-shadow 0.15s ease, transform 0.12s ease;
+    }
+    .retro-input:focus {
+      outline: none;
+      box-shadow: 3px 3px 0 var(--coral);
+    }
+
+    /* Vintage Cinema Ticket Header with Side Notches */
+    .ticket-banner {
+      position: relative;
+      background-color: var(--cream);
+      border: 2.5px solid var(--ink);
+      box-shadow: 6px 6px 0 var(--ink);
+    }
+    .ticket-notch-left,
+    .ticket-notch-right {
+      position: absolute;
+      top: 50%;
+      width: 24px;
+      height: 24px;
+      background-color: var(--paper);
+      border: 2.5px solid var(--ink);
+      border-radius: 999px;
+      transform: translateY(-50%);
+      z-index: 2;
+    }
+    .ticket-notch-left {
+      left: -14px;
+      clip-path: inset(0 0 0 50%);
+    }
+    .ticket-notch-right {
+      right: -14px;
+      clip-path: inset(0 50% 0 0);
+    }
+
+    /* Decorative Washi Tape Strip on Cards */
+    .washi-tape {
+      position: absolute;
+      top: -9px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-2deg);
+      width: 68px;
+      height: 18px;
+      opacity: 0.88;
+      border: 1.5px solid rgba(56, 38, 59, 0.35);
       pointer-events: none;
-      z-index: 0;
+      z-index: 5;
     }
 
-    /* Custom subtle scrollbars */
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: #0e0f13; }
-    ::-webkit-scrollbar-thumb { background: #262936; border-radius: 999px; }
-    ::-webkit-scrollbar-thumb:hover { background: #3a3f52; }
-
-    /* Custom range slider for couple ratings */
-    input[type="range"].cinema-range {
+    /* Cute Retro Range Slider */
+    input[type="range"].retro-range {
       -webkit-appearance: none;
       appearance: none;
-      height: 6px;
+      height: 10px;
       border-radius: 999px;
-      background: #262936;
+      background: #fff7eb;
+      border: 2px solid var(--ink);
       outline: none;
     }
-    input[type="range"].cinema-range::-webkit-slider-thumb {
+    input[type="range"].retro-range::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: 18px;
-      height: 18px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #e58c9b, #e8a87c);
+      background: var(--coral);
+      border: 2px solid var(--ink);
+      box-shadow: 2px 2px 0 var(--ink);
       cursor: pointer;
-      border: 2px solid #0e0f13;
-      box-shadow: 0 2px 8px rgba(229, 140, 155, 0.4);
-      transition: transform 0.15s ease;
+      transition: transform 0.12s ease;
     }
-    input[type="range"].cinema-range::-webkit-slider-thumb:hover {
-      transform: scale(1.15);
+    input[type="range"].retro-range::-webkit-slider-thumb:hover {
+      transform: scale(1.12);
     }
 
-    /* Modal entrance animation */
-    @keyframes modalFadeIn {
-      from { opacity: 0; transform: translateY(10px) scale(0.985); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+    /* Modal & Toast Animations */
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.94) translateY(10px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
     }
-    .animate-modal {
-      animation: modalFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    .animate-pop {
+      animation: popIn 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.15) forwards;
     }
 
-    /* Toast animation */
-    @keyframes toastSlideIn {
-      from { opacity: 0; transform: translateY(16px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes slotFlash {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
     }
-    .animate-toast {
-      animation: toastSlideIn 0.22s ease-out forwards;
+    .animate-slot {
+      animation: slotFlash 0.14s ease-in-out infinite;
     }
+
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar { width: 9px; height: 9px; }
+    ::-webkit-scrollbar-track { background: #fff7eb; }
+    ::-webkit-scrollbar-thumb { background: #ff9ebb; border: 2px solid #38263b; border-radius: 999px; }
   </style>
 </head>
 
-<body class="min-h-screen relative selection:bg-cinema-rose/30 selection:text-white">
-  <!-- Main App Shell -->
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 pb-20">
+<body class="min-h-screen selection:bg-buttercup selection:text-ink">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-9 pb-20">
 
-    <!-- Header -->
-    <header class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 border-b border-cinema-border/80">
-      <div>
-        <div class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-cinema-amber mb-2">
-          <span class="w-1.5 h-1.5 rounded-full bg-cinema-rose"></span>
-          Private Watchlist &amp; Film Diary
+    <!-- =======================================================================
+         VINTAGE CINEMA TICKET HEADER BANNER
+         ======================================================================= -->
+    <header class="ticket-banner rounded-3xl px-5 sm:px-9 py-6 sm:py-7 mb-7 overflow-visible">
+      <div class="hidden sm:block ticket-notch-left"></div>
+      <div class="hidden sm:block ticket-notch-right"></div>
+
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+        <!-- Left: Ticket Stub Title -->
+        <div class="flex-1">
+          <div class="inline-flex flex-wrap items-center gap-2 mb-2.5">
+            <span class="font-mono text-[11px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full bg-buttercup border-2 border-ink">
+              ★ Admit Two
+            </span>
+            <span class="font-mono text-[11px] uppercase tracking-wider text-inkSoft">
+              Est. Date Night · Reel No. 02
+            </span>
+          </div>
+
+          <h1 class="font-serif text-4xl sm:text-5xl font-bold text-ink tracking-tight leading-tight flex flex-wrap items-center gap-2.5">
+            <span>S&M's couch</span>
+            <span class="inline-block text-coral text-3xl sm:text-4xl transform -rotate-6" aria-hidden="true">✿</span>
+          </h1>
+          <p class="text-inkSoft text-sm sm:text-base mt-1.5 max-w-xl">
+            A cozy little scrapbook of films we love, date-night moods, and tiny memories for two. ♡
+          </p>
         </div>
-        <h1 class="font-serif text-4xl sm:text-5xl font-semibold tracking-tight text-white">
-          S&M's couch
-        </h1>
-        <p class="text-cinema-muted text-sm sm:text-base mt-2 max-w-xl">
-          Curated films for two. Search TMDB to add titles in a click, rate them together, and sync seamlessly with GitHub Pages.
-        </p>
-      </div>
 
-      <!-- Primary Action Buttons -->
-      <div class="flex flex-wrap items-center gap-2.5">
-        <button id="btnAddMovie"
-          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-cinema-rose to-cinema-amber text-[#121014] font-semibold text-sm shadow-lg shadow-cinema-rose/15 hover:brightness-110 active:scale-[0.98] transition cursor-pointer">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
-          Add Movie
-        </button>
+        <!-- Perforated Divider (Desktop) -->
+        <div class="hidden lg:block w-px self-stretch border-l-2 border-dashed border-ink/30 mx-2"></div>
 
-        <button id="btnPickTonight"
-          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-cinema-surface border border-cinema-border text-white hover:border-cinema-amber/60 hover:bg-cinema-elevated font-medium text-sm transition cursor-pointer">
-          <svg class="w-4 h-4 text-cinema-amber" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/></svg>
-          Pick for Tonight
-        </button>
+        <!-- Right: Retro Action Buttons -->
+        <div class="flex flex-wrap items-center gap-2.5">
+          <button id="btnAddMovie"
+            class="retro-btn inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-coral text-cream font-semibold text-sm cursor-pointer">
+            <span class="text-base leading-none">＋</span> Add Movie
+          </button>
 
-        <button id="btnSyncMissing"
-          class="hidden inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-cinema-surface border border-cinema-border text-cinema-rose hover:border-cinema-rose/50 hover:bg-cinema-elevated font-medium text-sm transition cursor-pointer"
-          title="Fetch missing posters &amp; metadata from TMDB">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
-          <span id="syncMissingLabel">Sync Posters</span>
-        </button>
+          <button id="btnPickTonight"
+            class="retro-btn inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-buttercup text-ink font-semibold text-sm cursor-pointer">
+            <span>★</span> Pick for Tonight
+          </button>
 
-        <!-- Quick GitHub Push button (shown only when GitHub sync is configured) -->
-        <button id="btnQuickPush"
-          class="hidden inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-cinema-surface border border-cinema-border text-emerald-400 hover:border-emerald-400/50 hover:bg-cinema-elevated font-medium text-sm transition cursor-pointer"
-          title="Push current shelf to GitHub">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"/></svg>
-          Push
-        </button>
+          <button id="btnSyncPosters"
+            class="hidden retro-btn inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-2xl bg-pistachio text-ink font-semibold text-sm cursor-pointer"
+            title="Fetch missing posters &amp; metadata from TMDB">
+            <span>✿</span> <span id="syncPostersLabel">Sync Posters</span>
+          </button>
 
-        <button id="btnSettings"
-          class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-cinema-surface border border-cinema-border text-cinema-muted hover:text-white hover:border-cinema-border/80 hover:bg-cinema-elevated font-medium text-sm transition cursor-pointer"
-          title="Settings, TMDB API &amp; GitHub Sync">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-          Settings
-        </button>
+          <button id="btnQuickPush"
+            class="hidden retro-btn inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-2xl bg-lavender text-ink font-semibold text-sm cursor-pointer"
+            title="Push shelf directly to GitHub">
+            <span>↑</span> Push
+          </button>
+
+          <button id="btnSettings"
+            class="retro-btn inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-2xl bg-cream text-ink font-semibold text-sm cursor-pointer"
+            title="Settings, TMDB API &amp; GitHub Sync">
+            <span>⚙</span> Settings
+          </button>
+        </div>
       </div>
     </header>
 
-    <!-- Progress Bar Banner for Sync Missing Metadata -->
-    <div id="syncProgressWrap" class="hidden mt-5 bg-cinema-surface border border-cinema-border rounded-2xl p-4">
-      <div class="flex items-center justify-between text-xs sm:text-sm mb-2">
-        <span id="syncProgressText" class="text-white font-medium">Syncing metadata from TMDB...</span>
-        <span id="syncProgressCount" class="text-cinema-amber font-mono">0 / 0</span>
+    <!-- =======================================================================
+         RETRO SYNC PROGRESS BAR (Visible during batch poster sync)
+         ======================================================================= -->
+    <div id="syncProgressWrap" class="hidden retro-box rounded-2xl bg-cream p-4 mb-6">
+      <div class="flex items-center justify-between text-xs sm:text-sm font-semibold mb-2">
+        <span id="syncProgressText" class="text-ink">✿ Fetching vintage posters from TMDB...</span>
+        <span id="syncProgressCount" class="font-mono text-coral">0 / 0</span>
       </div>
-      <div class="w-full h-2 bg-cinema-bg rounded-full overflow-hidden">
-        <div id="syncProgressBar" class="h-full bg-gradient-to-r from-cinema-rose to-cinema-amber rounded-full transition-all duration-300" style="width: 0%"></div>
+      <div class="w-full h-4 bg-paper border-2 border-ink rounded-full overflow-hidden p-0.5">
+        <div id="syncProgressBar" class="h-full bg-gradient-to-r from-strawberry via-buttercup to-pistachio rounded-full transition-all duration-300" style="width: 0%"></div>
       </div>
     </div>
 
-    <!-- Stats Row -->
-    <section class="grid grid-cols-3 gap-3 sm:gap-4 my-6">
-      <div class="bg-cinema-surface/90 border border-cinema-border rounded-2xl px-4 py-3.5 sm:px-5 sm:py-4 flex items-center justify-between">
+    <!-- =======================================================================
+         RETRO TICKET-STYLE STAT PILLS
+         ======================================================================= -->
+    <section class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-7">
+      <div class="retro-box-sm rounded-2xl bg-cream px-4 py-3 flex items-center justify-between">
         <div>
-          <p class="text-[11px] sm:text-xs uppercase tracking-wider text-cinema-muted font-medium">Total Movies</p>
-          <p id="statTotal" class="font-serif text-2xl sm:text-3xl font-semibold text-white mt-0.5">0</p>
+          <span class="font-mono text-[10px] uppercase tracking-wider text-inkSoft block">Total Titles</span>
+          <span id="statTotal" class="font-serif text-2xl sm:text-3xl font-bold text-ink">0</span>
         </div>
-        <div class="hidden sm:flex w-10 h-10 rounded-xl bg-cinema-elevated border border-cinema-border items-center justify-center text-cinema-amber">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h1.5C5.496 19.5 6 18.996 6 18.375m-3.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-1.5A1.125 1.125 0 0118 18.375M20.625 4.5H3.375m17.25 0c.621 0 1.125.504 1.125 1.125M20.625 4.5h-1.5C18.504 4.5 18 5.004 18 5.625m3.75 0v1.5c0 .621-.504 1.125-1.125 1.125M3.375 4.5c-.621 0-1.125.504-1.125 1.125M3.375 4.5h1.5C5.496 4.5 6 5.004 6 5.625m-3.75 0v1.5c0 .621.504 1.125 1.125 1.125m0 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m1.5-3.75C5.496 8.25 6 7.746 6 7.125v-1.5M4.875 8.25C5.496 8.25 6 8.754 6 9.375v1.5m0-5.25v5.25m0-5.25C6 5.004 6.504 4.5 7.125 4.5h9.75c.621 0 1.125.504 1.125 1.125m1.125 2.625h1.5m-1.5 0A1.125 1.125 0 0118 7.125v-1.5m1.125 2.625c-.621 0-1.125.504-1.125 1.125v1.5m2.625-2.625c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125M18 5.625v5.25M7.125 12h9.75m-9.75 0A1.125 1.125 0 016 10.875M7.125 12C6.504 12 6 12.504 6 13.125m0-2.25C6 11.496 5.496 12 4.875 12M18 10.875c0 .621-.504 1.125-1.125 1.125M18 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m-12 5.25v-5.25m0 5.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125m-12 0v-1.5c0-.621-.504-1.125-1.125-1.125M18 18.375v-5.25m0 5.25v-1.5c0-.621.504-1.125 1.125-1.125M18 13.125v1.5c0 .621.504 1.125 1.125 1.125M18 13.125c0-.621.504-1.125 1.125-1.125M6 13.125v1.5c0 .621-.504 1.125-1.125 1.125M6 13.125C6 12.504 5.496 12 4.875 12m-1.5 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M19.125 12h1.5m0 0c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h1.5m14.25 0h1.5"/></svg>
-        </div>
+        <span class="w-9 h-9 rounded-xl bg-buttercup border-2 border-ink flex items-center justify-center text-sm font-bold">★</span>
       </div>
 
-      <div class="bg-cinema-surface/90 border border-cinema-border rounded-2xl px-4 py-3.5 sm:px-5 sm:py-4 flex items-center justify-between">
+      <div class="retro-box-sm rounded-2xl bg-cream px-4 py-3 flex items-center justify-between">
         <div>
-          <p class="text-[11px] sm:text-xs uppercase tracking-wider text-cinema-muted font-medium">Watchlist</p>
-          <p id="statWatchlist" class="font-serif text-2xl sm:text-3xl font-semibold text-cinema-amber mt-0.5">0</p>
+          <span class="font-mono text-[10px] uppercase tracking-wider text-inkSoft block">Watched ♡</span>
+          <span id="statWatched" class="font-serif text-2xl sm:text-3xl font-bold text-coral">0</span>
         </div>
-        <div class="hidden sm:flex w-10 h-10 rounded-xl bg-cinema-elevated border border-cinema-border items-center justify-center text-cinema-muted">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z"/></svg>
-        </div>
+        <span class="w-9 h-9 rounded-xl bg-strawberry border-2 border-ink flex items-center justify-center text-sm font-bold">♡</span>
       </div>
 
-      <div class="bg-cinema-surface/90 border border-cinema-border rounded-2xl px-4 py-3.5 sm:px-5 sm:py-4 flex items-center justify-between">
+      <div class="retro-box-sm rounded-2xl bg-cream px-4 py-3 flex items-center justify-between">
         <div>
-          <p class="text-[11px] sm:text-xs uppercase tracking-wider text-cinema-muted font-medium">Watched</p>
-          <p id="statWatched" class="font-serif text-2xl sm:text-3xl font-semibold text-cinema-rose mt-0.5">0</p>
+          <span class="font-mono text-[10px] uppercase tracking-wider text-inkSoft block">To Watch</span>
+          <span id="statUnwatched" class="font-serif text-2xl sm:text-3xl font-bold text-ink">0</span>
         </div>
-        <div class="hidden sm:flex w-10 h-10 rounded-xl bg-cinema-elevated border border-cinema-border items-center justify-center text-cinema-rose">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>
+        <span class="w-9 h-9 rounded-xl bg-pistachio border-2 border-ink flex items-center justify-center text-sm font-bold">✿</span>
+      </div>
+
+      <div class="retro-box-sm rounded-2xl bg-cream px-4 py-3 flex items-center justify-between">
+        <div>
+          <span class="font-mono text-[10px] uppercase tracking-wider text-inkSoft block">Genres</span>
+          <span id="statGenres" class="font-serif text-2xl sm:text-3xl font-bold text-ink">0</span>
         </div>
+        <span class="w-9 h-9 rounded-xl bg-lavender border-2 border-ink flex items-center justify-center text-sm font-bold">✦</span>
       </div>
     </section>
 
-    <!-- Filter & Sort Toolbar -->
-    <section class="bg-cinema-surface border border-cinema-border rounded-2xl p-3.5 sm:p-4 mb-7">
+    <!-- =======================================================================
+         FILTER & SORT SCRAPBOOK TOOLBAR
+         ======================================================================= -->
+    <section class="retro-box rounded-3xl bg-cream p-4 sm:p-5 mb-8">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3">
-        <!-- Search Input -->
-        <div class="relative sm:col-span-2 lg:col-span-5">
-          <svg class="w-4 h-4 text-cinema-muted absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
-          <input id="filterSearch" type="text" placeholder="Search titles, genres, plots, or notes..."
-            class="w-full bg-cinema-bg border border-cinema-border rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-cinema-muted focus:outline-none focus:border-cinema-rose transition" />
+        <!-- Search -->
+        <div class="sm:col-span-2 lg:col-span-4 relative">
+          <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-inkSoft text-sm pointer-events-none">⌕</span>
+          <input id="filterSearch" type="text" placeholder="Search titles, plots, genres, notes..."
+            class="retro-input w-full rounded-2xl pl-9 pr-3.5 py-2.5 text-sm placeholder-inkSoft/70" />
         </div>
 
         <!-- Genre Dropdown -->
-        <div class="lg:col-span-3">
-          <select id="filterGenre"
-            class="w-full bg-cinema-bg border border-cinema-border rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-cinema-rose transition cursor-pointer">
+        <div class="lg:col-span-2">
+          <select id="filterGenre" class="retro-input w-full rounded-2xl px-3 py-2.5 text-sm cursor-pointer">
             <option value="">All Genres</option>
           </select>
         </div>
 
-        <!-- Status Dropdown -->
-        <div class="lg:col-span-2">
-          <select id="filterStatus"
-            class="w-full bg-cinema-bg border border-cinema-border rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-cinema-rose transition cursor-pointer">
-            <option value="all">All Status</option>
-            <option value="unwatched">To Watch</option>
-            <option value="watched">Watched</option>
+        <!-- Date-Night Mood Dropdown -->
+        <div class="lg:col-span-3">
+          <select id="filterMood" class="retro-input w-full rounded-2xl px-3 py-2.5 text-sm cursor-pointer">
+            <option value="">Any Date-Night Mood</option>
           </select>
         </div>
 
         <!-- Sort Dropdown -->
-        <div class="lg:col-span-2">
-          <select id="filterSort"
-            class="w-full bg-cinema-bg border border-cinema-border rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-cinema-rose transition cursor-pointer">
+        <div class="lg:col-span-3">
+          <select id="filterSort" class="retro-input w-full rounded-2xl px-3 py-2.5 text-sm cursor-pointer">
+            <option value="title">Sort: A–Z</option>
             <option value="recent">Recently Added</option>
-            <option value="title">Title A–Z</option>
-            <option value="tmdbDesc">Highest TMDB</option>
             <option value="yearDesc">Newest First</option>
-            <option value="coupleDesc">Highest Couple</option>
+            <option value="yearAsc">Oldest First</option>
+            <option value="tmdbDesc">Highest TMDB ★</option>
+            <option value="coupleDesc">Highest Couple ♡</option>
           </select>
         </div>
       </div>
 
-      <!-- Active filter summary bar -->
-      <div class="flex items-center justify-between mt-3 pt-3 border-t border-cinema-border/60 text-xs text-cinema-muted">
-        <span id="resultsSummary">Showing 0 films</span>
-        <button id="btnResetFilters" class="hidden text-cinema-rose hover:underline font-medium cursor-pointer">Reset filters</button>
+      <!-- Status Toggle Pills + Clear Filters -->
+      <div class="flex flex-wrap items-center justify-between gap-3 mt-4 pt-3.5 border-t-2 border-dashed border-ink/20">
+        <div class="inline-flex items-center gap-1.5 p-1 rounded-2xl bg-paper border-2 border-ink" role="group" aria-label="Watch status filter">
+          <button data-status="all" class="status-pill px-3.5 py-1 rounded-xl text-xs font-semibold transition cursor-pointer bg-buttercup text-ink border-2 border-ink">
+            All
+          </button>
+          <button data-status="unwatched" class="status-pill px-3.5 py-1 rounded-xl text-xs font-semibold transition cursor-pointer text-inkSoft hover:text-ink border-2 border-transparent">
+            To Watch
+          </button>
+          <button data-status="watched" class="status-pill px-3.5 py-1 rounded-xl text-xs font-semibold transition cursor-pointer text-inkSoft hover:text-ink border-2 border-transparent">
+            Watched ♡
+          </button>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <span id="filterSummary" class="font-mono text-xs text-inkSoft">0 titles shown</span>
+          <button id="btnClearFilters"
+            class="hidden retro-btn px-3 py-1 rounded-xl bg-strawberry/70 text-ink text-xs font-semibold cursor-pointer">
+            Clear Filters ✕
+          </button>
+        </div>
       </div>
     </section>
 
-    <!-- Poster-First Grid -->
-    <main id="movieGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-5">
-      <!-- Cards rendered dynamically -->
+    <!-- =======================================================================
+         MOVIE SCRAPBOOK GRID
+         ======================================================================= -->
+    <main id="movieGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 sm:gap-6">
+      <!-- Movie cards dynamically rendered here -->
     </main>
 
-    <!-- Footer -->
-    <footer class="mt-16 pt-6 border-t border-cinema-border/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-cinema-muted">
-      <p>
-        Movie metadata &amp; posters powered by <a href="https://www.themoviedb.org" target="_blank" rel="noreferrer" class="text-cinema-amber hover:underline">TMDB</a>. This product uses the TMDB API but is not endorsed or certified by TMDB.
-      </p>
-      <p id="storageStatus" class="text-cinema-muted/80">Saved locally in browser</p>
+    <!-- =======================================================================
+         CUTE RETRO FOOTER WITH TMDB ATTRIBUTION
+         ======================================================================= -->
+    <footer class="mt-16 pt-6 border-t-2 border-dashed border-ink/25 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-inkSoft">
+      <div class="max-w-2xl leading-relaxed">
+        <span class="font-serif font-bold text-ink">✿ About the Movie Magic:</span>
+        Posters &amp; film metadata are fetched from
+        <a href="https://www.themoviedb.org" target="_blank" rel="noreferrer" class="font-semibold text-coral underline decoration-wavy underline-offset-2 hover:text-ink">The Movie Database (TMDB)</a>.
+        This product uses the TMDB API but is not endorsed or certified by TMDB. Free for non-commercial personal use with attribution.
+      </div>
+      <div id="storageBadge" class="font-mono text-[11px] px-3 py-1.5 rounded-full bg-cream border-2 border-ink shrink-0">
+        ★ Saved in browser
+      </div>
     </footer>
   </div>
 
-  <!-- Reusable Modal Backdrop -->
-  <div id="modalBackdrop" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-3 sm:p-5 overflow-y-auto">
-    <div id="modalContainer" class="w-full max-w-2xl bg-cinema-surface border border-cinema-border rounded-2xl shadow-2xl overflow-hidden my-auto animate-modal">
-      <!-- Dynamic Modal Content -->
+  <!-- =========================================================================
+       REUSABLE RETRO MODAL SHELL
+       ========================================================================= -->
+  <div id="modalBackdrop" class="fixed inset-0 z-50 hidden items-center justify-center bg-ink/60 backdrop-blur-[2px] p-3 sm:p-5 overflow-y-auto">
+    <div id="modalContainer" class="w-full max-w-2xl bg-cream retro-box rounded-3xl overflow-hidden my-auto animate-pop">
+      <!-- Modal content injected here -->
     </div>
   </div>
 
-  <!-- Toast Container -->
-  <div id="toastContainer" class="fixed bottom-5 right-5 z-[60] flex flex-col gap-2 max-w-sm w-[calc(100%-2.5rem)] pointer-events-none"></div>
+  <!-- Toast Stack -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-[60] flex flex-col gap-2.5 max-w-sm w-[calc(100%-2.5rem)] pointer-events-none"></div>
 
   <!-- Hidden File Input for JSON Import -->
   <input id="importFileInput" type="file" accept="application/json" class="hidden" />
 
   <script>
     /* =========================================================================
-       S&M's couch — Application Logic
-       Zero-backend, single-file movie tracker with TMDB v3/v4 & GitHub Sync
+       S&M's couch — Cutesy Retro Movie Tracker
+       Single-file, zero-database app with TMDB v3/v4 & GitHub Pages Sync
        ========================================================================= */
 
-    // Storage Keys
-    const STORAGE_MOVIES_KEY = 'ourMovieShelf_movies_v2';
-    const STORAGE_SETTINGS_KEY = 'ourMovieShelf_settings_v2';
+    const STORAGE_MOVIES_KEY = 'ourMovieShelf_retro_movies_v1';
+    const STORAGE_SETTINGS_KEY = 'ourMovieShelf_retro_settings_v1';
 
-    // Default Settings
+    const MOOD_OPTIONS = [
+      'Romantic',
+      'Funny & light',
+      'Thought-provoking',
+      'Suspenseful',
+      'Comfort watch',
+      'Emotional',
+      'Fantasy & adventure',
+      'Dark & unsettling'
+    ];
+
+    // Pastel sticker palette for moods & washi tapes
+    const MOOD_COLORS = {
+      'Romantic': 'bg-strawberry text-ink',
+      'Funny & light': 'bg-buttercup text-ink',
+      'Thought-provoking': 'bg-lavender text-ink',
+      'Suspenseful': 'bg-[#ffd1a9] text-ink',
+      'Comfort watch': 'bg-pistachio text-ink',
+      'Emotional': 'bg-[#c7d9ff] text-ink',
+      'Fantasy & adventure': 'bg-[#e6c6ff] text-ink',
+      'Dark & unsettling': 'bg-[#e8bfd0] text-ink'
+    };
+
+    const WASHI_COLORS = ['#ff9ebb', '#ffe184', '#a8e6cf', '#d7c0ff', '#ffb899'];
+
     const DEFAULT_SETTINGS = {
       tmdbKey: '',
       partner1Name: 'Mahi',
-      partner2Name: 'Me',
+      partner2Name: 'You',
       ghRepo: '',
       ghBranch: 'main',
       ghPath: 'movies.json',
       ghToken: ''
     };
 
-    // Starter Collection (loaded only if no localStorage & no ./movies.json)
+    // Curated Starter List (31 titles with genres, synopses, and moods)
     const STARTER_MOVIES = [
-      { title: 'Nightcrawler', genres: ['Crime', 'Thriller', 'Drama'], overview: 'A driven freelance crime journalist pushes into the dangerous nocturnal underworld of Los Angeles to capture increasingly disturbing footage.' },
-      { title: 'Drive', genres: ['Crime', 'Thriller', 'Drama'], overview: 'A quiet Hollywood stuntman moonlights as a getaway driver and gets entangled in a heist that puts his neighbour in danger.' },
-      { title: 'Companion', genres: ['Science Fiction', 'Thriller', 'Horror'], overview: 'A weekend getaway at a remote lakeside estate takes a sinister turn in a twisty story about control, love, and technology.' },
-      { title: 'About Time', genres: ['Romance', 'Comedy', 'Fantasy', 'Drama'], overview: 'A young man discovers he can travel through time and uses the gift to improve his love life while learning what makes an ordinary day meaningful.' },
-      { title: 'The Proposal', genres: ['Romance', 'Comedy'], overview: 'A demanding book editor persuades her assistant to enter a fake engagement to avoid deportation, sending them off to meet his quirky Alaskan family.' },
-      { title: '10 Things I Hate About You', genres: ['Romance', 'Comedy', 'Drama'], overview: 'A new student is drawn into a scheme to date the sharp-tongued older sister of a classmate in this modern Shakespeare-inspired teen comedy.' },
-      { title: 'Before Sunrise', genres: ['Romance', 'Drama'], overview: 'Two young travellers meet on a train and spend one unforgettable night wandering Vienna, talking about life, love, and possibility.' },
-      { title: 'After', genres: ['Romance', 'Drama'], overview: 'A sheltered college student begins an intense, complicated relationship that challenges her expectations and sense of self.' },
-      { title: '2 States', genres: ['Romance', 'Comedy', 'Drama'], overview: 'Two students from different parts of India fall in love and must win over their families across contrasting cultures and traditions.' },
-      { title: 'Barbie: Princess Charm School', genres: ['Animation', 'Fantasy', 'Family'], overview: 'A kind-hearted waitress discovers she may be a lost royal and attends an enchanting academy where she learns confidence and friendship.' },
-      { title: 'Finding Nemo', genres: ['Animation', 'Adventure', 'Family', 'Comedy'], overview: 'A cautious clownfish crosses the vast ocean with an unforgettable companion to rescue his son who has been taken from their reef.' },
-      { title: 'Dead Poets Society', genres: ['Drama'], overview: 'An unconventional English teacher inspires students at a strict boarding school to seize the day, think independently, and embrace poetry.' },
-      { title: 'The Lord of the Rings: The Fellowship of the Ring', genres: ['Fantasy', 'Adventure', 'Action'], overview: 'A young hobbit and a diverse fellowship embark on a perilous quest across Middle-earth to destroy an ancient ring of power.' },
-      { title: 'Inside Out 2', genres: ['Animation', 'Comedy', 'Family', 'Adventure'], overview: 'As Riley enters adolescence, her familiar emotions encounter a sudden wave of new feelings that turn headquarters upside down.' },
-      { title: 'How to Lose a Guy in 10 Days', genres: ['Romance', 'Comedy'], overview: 'A magazine writer tries to drive a man away for an article while he has made a bet that he can make a woman fall in love with him in ten days.' },
-      { title: 'Eyes Wide Shut', genres: ['Drama', 'Mystery', 'Thriller'], overview: 'After a confession in his marriage, a New York doctor drifts through a surreal nocturnal odyssey that tests desire and fidelity.' },
-      { title: 'Mansfield Park', genres: ['Romance', 'Drama'], overview: 'A perceptive young woman raised by wealthy relatives navigates class divides, family expectations, and complicated affections.' },
-      { title: 'Midsommar', genres: ['Horror', 'Drama', 'Mystery'], overview: 'A grieving woman joins her boyfriend and friends on a trip to a remote Swedish commune whose sunlit midsummer festival grows deeply unsettling.' },
-      { title: 'When Harry Met Sally...', genres: ['Romance', 'Comedy', 'Drama'], overview: 'Two sharp-witted friends keep crossing paths over the years while debating whether men and women can ever truly be just friends.' },
-      { title: "You've Got Mail", genres: ['Romance', 'Comedy'], overview: 'Two rival New York bookstore owners unknowingly fall for each other through anonymous, heartfelt emails.' },
-      { title: 'Sleepless in Seattle', genres: ['Romance', 'Comedy', 'Drama'], overview: 'A widowed father becomes the subject of a late-night radio call that captures the heart of a woman thousands of miles away.' },
-      { title: 'Practical Magic', genres: ['Fantasy', 'Romance', 'Comedy'], overview: 'Two witch sisters try to outrun a centuries-old family curse while navigating love, sisterhood, and supernatural chaos.' },
-      { title: 'Autumn in New York', genres: ['Romance', 'Drama'], overview: 'A commitment-averse restaurateur falls unexpectedly for a free-spirited younger woman and confronts the fragility of love and time.' },
-      { title: 'The Lake House', genres: ['Romance', 'Fantasy', 'Drama'], overview: 'Two lonely souls living in the same glass lakeside house two years apart begin exchanging letters through its mysterious mailbox.' },
-      { title: 'Mystic Pizza', genres: ['Romance', 'Comedy', 'Drama'], overview: 'Three young women working at a cozy pizza parlour in a small Connecticut town navigate first loves, ambition, and growing up.' },
-      { title: 'Grace and Frankie', genres: ['Comedy', 'Drama'], overview: 'Two fiercely opposite women whose husbands leave them for each other forge an unlikely bond and reinvent their lives together.', mediaType: 'tv' },
-      { title: 'Anastasia', genres: ['Animation', 'Adventure', 'Fantasy', 'Family'], overview: 'An amnesiac young woman teams up with two charming con artists on a journey to Paris to uncover whether she is the lost Russian princess.' },
-      { title: "Bridget Jones's Diary", genres: ['Romance', 'Comedy', 'Drama'], overview: 'A witty, candid Londoner chronicles her resolutions, romantic mishaps, and quest for self-improvement in a year-long diary.' },
-      { title: 'Balto', genres: ['Animation', 'Adventure', 'Drama', 'Family'], overview: 'An outcast half-wolf sled dog braves the harsh Alaskan wilderness to deliver life-saving medicine to a snowbound town.' },
-      { title: 'The Nightmare Before Christmas', genres: ['Animation', 'Fantasy', 'Family'], overview: 'Bored with the same spooky routine, Halloween Town’s Pumpkin King stumbles upon Christmas Town and plots to take over the holiday.' },
-      { title: 'Sense and Sensibility', genres: ['Romance', 'Drama'], overview: 'Two sisters of contrasting temperaments navigate sudden financial hardship and romantic heartache in Regency-era England.' },
-      { title: 'The Holdovers', genres: ['Comedy', 'Drama'], overview: 'A curmudgeonly prep-school teacher, a rebellious student, and a grieving head cook form an unexpected bond over Christmas break.' }
+      { title: 'Nightcrawler', genres: ['Crime', 'Thriller', 'Drama'], mood: 'Dark & unsettling', overview: 'A driven freelance crime journalist pushes into the dangerous underworld of Los Angeles to capture increasingly disturbing nocturnal footage.' },
+      { title: 'Drive', genres: ['Crime', 'Thriller', 'Drama'], mood: 'Suspenseful', overview: 'A quiet Hollywood stunt driver moonlights as a getaway driver and gets entangled in a heist that puts his neighbour in danger.' },
+      { title: 'Companion', genres: ['Science Fiction', 'Thriller', 'Horror'], mood: 'Dark & unsettling', overview: 'A weekend getaway at a lakeside estate takes a sinister turn in this twisty story about relationships, control, and technology.' },
+      { title: 'About Time', genres: ['Romance', 'Comedy', 'Fantasy', 'Drama'], mood: 'Romantic', overview: 'A young man discovers he can travel through time and uses the gift to improve his love life while learning what makes an ordinary day meaningful.' },
+      { title: 'The Proposal', genres: ['Romance', 'Comedy'], mood: 'Funny & light', overview: 'A demanding book editor persuades her assistant to enter a fake engagement to avoid deportation, sending them off to meet his quirky Alaskan family.' },
+      { title: '10 Things I Hate About You', genres: ['Romance', 'Comedy', 'Drama'], mood: 'Funny & light', overview: 'A new student is drawn into a scheme to date the sharp-tongued older sister of a classmate in this modern Shakespeare-inspired teen comedy.' },
+      { title: 'Before Sunrise', genres: ['Romance', 'Drama'], mood: 'Romantic', overview: 'Two young travellers meet on a train and spend one unforgettable night wandering Vienna, talking about life, love, and possibility.' },
+      { title: 'After', genres: ['Romance', 'Drama'], mood: 'Romantic', overview: 'A sheltered college student begins an intense relationship that challenges her expectations and sense of self.' },
+      { title: '2 States', genres: ['Romance', 'Comedy', 'Drama'], mood: 'Romantic', overview: 'Two students from different parts of India fall in love and must navigate the cultural differences between their families.' },
+      { title: 'Princess Charm School', genres: ['Animation', 'Fantasy', 'Family'], mood: 'Comfort watch', overview: 'A kind-hearted girl discovers she may be a princess and attends a magical school where she learns confidence, etiquette, and friendship.' },
+      { title: 'Finding Nemo', genres: ['Animation', 'Adventure', 'Comedy', 'Family'], mood: 'Comfort watch', overview: 'A cautious clownfish crosses the ocean with an unforgettable companion to rescue his son who has been taken from their reef.' },
+      { title: 'Dead Poets Society', genres: ['Drama'], mood: 'Thought-provoking', overview: 'An unconventional English teacher inspires students at a strict boarding school to seize the day, think independently, and embrace poetry.' },
+      { title: 'The Lord of the Rings', genres: ['Fantasy', 'Adventure', 'Action'], mood: 'Fantasy & adventure', overview: 'A young hobbit and a diverse fellowship embark on a perilous quest across Middle-earth to destroy a powerful ancient ring.' },
+      { title: 'Inside Out 2', genres: ['Animation', 'Comedy', 'Adventure', 'Family'], mood: 'Funny & light', overview: 'As Riley enters adolescence, familiar emotions encounter a sudden wave of new feelings that complicate life inside her mind.' },
+      { title: 'How to Lose a Guy in 10 Days', genres: ['Romance', 'Comedy'], mood: 'Funny & light', overview: 'A journalist tries to drive a man away for an article while he has made a bet that he can make a woman fall in love with him.' },
+      { title: 'Eyes Wide Shut', genres: ['Drama', 'Mystery', 'Thriller'], mood: 'Dark & unsettling', overview: 'After a confession in his marriage, a New York doctor drifts through a mysterious nocturnal world that challenges desire and fidelity.' },
+      { title: 'Mansfield Park', genres: ['Romance', 'Drama'], mood: 'Romantic', overview: 'A perceptive young woman raised by wealthy relatives navigates class, family expectations, and complicated affections.' },
+      { title: 'Midsommar', genres: ['Horror', 'Drama', 'Mystery'], mood: 'Dark & unsettling', overview: 'A grieving woman joins her boyfriend and friends on a trip to a remote Swedish community whose bright midsummer traditions grow increasingly disturbing.' },
+      { title: 'When Harry Met Sally', genres: ['Romance', 'Comedy', 'Drama'], mood: 'Funny & light', overview: 'Two sharp-witted friends keep crossing paths over the years while debating whether men and women can ever be just friends.' },
+      { title: "You've Got Mail", genres: ['Romance', 'Comedy'], mood: 'Comfort watch', overview: 'Two rival New York bookstore owners unknowingly develop an intimate connection through anonymous, heartfelt emails.' },
+      { title: 'Sleepless in Seattle', genres: ['Romance', 'Comedy', 'Drama'], mood: 'Romantic', overview: 'A widowed father becomes the focus of a late-night radio call that captures the imagination of a woman across the country.' },
+      { title: 'Practical Magic', genres: ['Fantasy', 'Romance', 'Comedy'], mood: 'Comfort watch', overview: 'Two witch sisters try to escape a family curse while navigating love, sisterhood, and a little supernatural chaos.' },
+      { title: 'Autumn in New York', genres: ['Romance', 'Drama'], mood: 'Emotional', overview: 'A commitment-averse restaurateur falls for a free-spirited younger woman and confronts the fragility of life and love.' },
+      { title: 'The Lake House', genres: ['Romance', 'Fantasy', 'Drama'], mood: 'Romantic', overview: 'Two people living in the same glass lakeside house two years apart begin communicating through its mysterious mailbox.' },
+      { title: 'Mystic Pizza', genres: ['Romance', 'Comedy', 'Drama'], mood: 'Comfort watch', overview: 'Three young women working at a cozy pizza restaurant in a small Connecticut town navigate love, ambition, and growing up.' },
+      { title: 'Grace and Frankie', genres: ['Comedy', 'Drama'], mood: 'Funny & light', mediaType: 'tv', overview: 'Two fiercely opposite women whose husbands leave them for each other form an unexpected friendship and rebuild their lives.' },
+      { title: 'Anastasia', genres: ['Animation', 'Adventure', 'Fantasy'], mood: 'Fantasy & adventure', overview: 'An amnesiac young woman joins two charming con artists on a journey to Paris to discover whether she is the lost Russian princess.' },
+      { title: "Bridget Jones's Diary", genres: ['Romance', 'Comedy', 'Drama'], mood: 'Funny & light', overview: 'A witty, candid single woman records her resolutions, romantic mishaps, and quest for self-improvement in a year-long diary.' },
+      { title: 'Balto', genres: ['Animation', 'Adventure', 'Drama', 'Family'], mood: 'Comfort watch', overview: 'A half-wolf sled dog races across the Alaskan wilderness to help deliver life-saving medicine to children during an epidemic.' },
+      { title: 'Sense and Sensibility', genres: ['Romance', 'Drama'], mood: 'Romantic', overview: 'Two sisters with contrasting temperaments face financial uncertainty and romantic disappointments in Regency-era England.' },
+      { title: 'The Holdovers', genres: ['Comedy', 'Drama'], mood: 'Thought-provoking', overview: 'A gruff teacher, a troubled student, and a grieving head cook form an unlikely bond while stranded at a boarding school over Christmas break.' }
     ];
 
-    // App State
+    // Application State
     let movies = [];
     let settings = { ...DEFAULT_SETTINGS };
+    let activeStatusFilter = 'all';
     let searchDebounceTimer = null;
-    let isSyncing = false;
+    let isSyncingPosters = false;
 
-    // Shorthand DOM getter
     const $ = (id) => document.getElementById(id);
 
     /* =========================================================================
@@ -364,33 +528,36 @@
 
     function showToast(message, type = 'info') {
       const container = $('toastContainer');
-      const colors = {
-        info: 'border-cinema-border bg-cinema-elevated text-white',
-        success: 'border-emerald-500/40 bg-[#13221c] text-emerald-200',
-        error: 'border-rose-500/40 bg-[#26141a] text-rose-200',
-        warn: 'border-amber-500/40 bg-[#241d12] text-amber-200'
+      const styles = {
+        info: 'bg-buttercup text-ink',
+        success: 'bg-pistachio text-ink',
+        error: 'bg-coral text-cream',
+        warn: 'bg-strawberry text-ink'
       };
+      const icons = { info: '★', success: '✿', error: '✕', warn: '!' };
       const el = document.createElement('div');
-      el.className = `pointer-events-auto px-4 py-3 rounded-xl border text-sm shadow-xl animate-toast flex items-center gap-2.5 ${colors[type] || colors.info}`;
-      el.innerHTML = `<span class="flex-1 leading-snug">${escapeHtml(message)}</span>`;
+      el.className = `pointer-events-auto retro-box-sm rounded-2xl px-4 py-3 text-sm font-semibold flex items-center gap-2.5 animate-pop ${styles[type] || styles.info}`;
+      el.innerHTML = `<span class="font-mono text-base">${icons[type] || '★'}</span><span class="flex-1 leading-snug">${escapeHtml(message)}</span>`;
       container.appendChild(el);
+
       setTimeout(() => {
         el.style.opacity = '0';
-        el.style.transform = 'translateY(8px)';
+        el.style.transform = 'translateY(10px)';
         el.style.transition = 'all 0.25s ease';
         setTimeout(() => el.remove(), 260);
       }, 3600);
     }
 
-    function normalizeMovie(raw, fallbackIndex = 0) {
+    function normalizeMovie(raw, idx = 0) {
       return {
-        id: raw.id || `movie-${Date.now()}-${fallbackIndex}`,
+        id: raw.id || `movie-${Date.now()}-${idx}`,
         tmdbId: raw.tmdbId || null,
         mediaType: raw.mediaType || 'movie',
         title: raw.title || 'Untitled',
         year: raw.year ? String(raw.year) : '',
         runtime: raw.runtime || '',
         genres: Array.isArray(raw.genres) ? raw.genres : [],
+        mood: raw.mood || '',
         overview: raw.overview || '',
         poster: raw.poster || '',
         backdrop: raw.backdrop || '',
@@ -399,20 +566,20 @@
         rating1: raw.rating1 != null && Number(raw.rating1) > 0 ? Number(raw.rating1) : null,
         rating2: raw.rating2 != null && Number(raw.rating2) > 0 ? Number(raw.rating2) : null,
         note: raw.note || '',
-        addedAt: raw.addedAt || (Date.now() - fallbackIndex * 1000)
+        addedAt: raw.addedAt || (Date.now() - idx * 1000)
       };
     }
 
     function getCoupleAverage(movie) {
       const vals = [movie.rating1, movie.rating2].filter((v) => v != null && v > 0);
       if (!vals.length) return null;
-      return vals.reduce((a, b) => a + b, 0) / vals.length;
+      return vals.reduce((sum, v) => sum + v, 0) / vals.length;
     }
 
     function formatRuntime(minutes, mediaType, seasons) {
       if (mediaType === 'tv') {
         if (seasons) return `${seasons} ${seasons === 1 ? 'Season' : 'Seasons'}`;
-        if (minutes) return `${minutes}m / ep`;
+        if (minutes) return `${minutes}m/ep`;
         return '';
       }
       if (!minutes || isNaN(minutes)) return '';
@@ -421,7 +588,13 @@
       return h > 0 ? `${h}h ${m}m` : `${m}m`;
     }
 
-    // UTF-8 safe Base64 helpers for GitHub REST API
+    function moodSelectOptions(selected = '') {
+      return MOOD_OPTIONS.map((m) =>
+        `<option value="${escapeHtml(m)}" ${m === selected ? 'selected' : ''}>${escapeHtml(m)}</option>`
+      ).join('');
+    }
+
+    // UTF-8 safe Base64 helpers for GitHub Contents API
     function utf8ToBase64(str) {
       const bytes = new TextEncoder().encode(str);
       let binary = '';
@@ -430,86 +603,84 @@
     }
 
     function base64ToUtf8(b64) {
-      const clean = b64.replace(/\s/g, '');
-      const binary = atob(clean);
+      const binary = atob(b64.replace(/\s/g, ''));
       const bytes = Uint8Array.from(binary, (c) => c.charCodeAt(0));
       return new TextDecoder().decode(bytes);
     }
 
     /* =========================================================================
-       STORAGE & INITIALIZATION
+       PERSISTENCE & BOOTSTRAP
        ========================================================================= */
 
     function loadSettings() {
       try {
-        const saved = JSON.parse(localStorage.getItem(STORAGE_SETTINGS_KEY) || 'null');
-        if (saved && typeof saved === 'object') {
-          settings = { ...DEFAULT_SETTINGS, ...saved };
+        const stored = JSON.parse(localStorage.getItem(STORAGE_SETTINGS_KEY) || 'null');
+        if (stored && typeof stored === 'object') {
+          settings = { ...DEFAULT_SETTINGS, ...stored };
         }
       } catch (err) {
-        console.warn('Could not read settings from localStorage:', err);
+        console.warn('Could not read settings:', err);
       }
-      updateHeaderControls();
+      updateHeaderButtons();
     }
 
     function saveSettings() {
       try {
         localStorage.setItem(STORAGE_SETTINGS_KEY, JSON.stringify(settings));
       } catch (err) {
-        showToast('Failed to save settings locally.', 'error');
+        showToast('Could not save settings locally.', 'error');
       }
-      updateHeaderControls();
+      updateHeaderButtons();
     }
 
     function saveMovies() {
       try {
         localStorage.setItem(STORAGE_MOVIES_KEY, JSON.stringify(movies));
       } catch (err) {
-        showToast('Local storage full or unavailable.', 'error');
+        showToast('Local storage unavailable or full.', 'error');
       }
       renderApp();
     }
 
     async function initApp() {
+      // Populate Mood filter dropdown
+      $('filterMood').innerHTML = '<option value="">Any Date-Night Mood</option>' + moodSelectOptions();
+
       loadSettings();
 
-      let localData = null;
+      // 1. Try localStorage first
       try {
         const raw = localStorage.getItem(STORAGE_MOVIES_KEY);
         if (raw) {
           const parsed = JSON.parse(raw);
           if (Array.isArray(parsed) && parsed.length > 0) {
-            localData = parsed.map((m, i) => normalizeMovie(m, i));
+            movies = parsed.map((m, i) => normalizeMovie(m, i));
+            renderApp();
+            return;
           }
         }
       } catch (err) {
-        console.warn('Invalid local movie data:', err);
+        console.warn('Invalid local movie cache:', err);
       }
 
-      if (localData) {
-        movies = localData;
-        renderApp();
-        return;
-      }
-
-      // If localStorage is empty, attempt to fetch ./movies.json (GitHub Pages / local server)
+      // 2. If localStorage is empty, try ./movies.json (for GitHub Pages / local server)
       try {
         const res = await fetch(`./movies.json?t=${Date.now()}`, { cache: 'no-store' });
         if (res.ok) {
-          const repoData = await res.json();
-          if (Array.isArray(repoData) && repoData.length > 0) {
-            movies = repoData.map((m, i) => normalizeMovie(m, i));
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            movies = data.map((m, i) => normalizeMovie(m, i));
             saveMovies();
-            $('storageStatus').textContent = 'Loaded from ./movies.json';
-            showToast(`Loaded ${movies.length} movies from movies.json`, 'success');
+            $('storageBadge').textContent = '✿ Loaded ./movies.json';
+            showToast(`Loaded ${movies.length} movies from ./movies.json!`, 'success');
             return;
           }
         }
       } catch (_) {
-        // Expected when opened directly via file:// or when movies.json doesn't exist yet
+        // Expected when opened directly via file:// or no movies.json exists yet
       }
 
-      // Fallback to Starter Collection
+      // 3. Fallback to Curated Starter Collection
       const now = Date.now();
       movies = STARTER_MOVIES.map((item, idx) => normalizeMovie({
         id: `starter-${idx + 1}`,
@@ -523,21 +694,20 @@
        TMDB INTEGRATION (Auto-detects v3 API Key vs v4 Read Access Token)
        ========================================================================= */
 
-    function detectTmdbAuthType(rawKey) {
+    function detectTmdbAuth(rawKey) {
       const key = (rawKey || '').trim();
       if (!key) return null;
-      // v4 tokens are JWTs (long strings containing dots, typically > 50 chars)
-      // v3 keys are 32-char hexadecimal strings
+      // v4 tokens are long JWTs containing dots; v3 keys are 32-char hex strings
       if (key.length > 48 || key.includes('.')) {
         return { type: 'v4', token: key };
       }
       return { type: 'v3', key };
     }
 
-    async function tmdbFetch(path, params = {}) {
-      const auth = detectTmdbAuthType(settings.tmdbKey);
+    async function tmdbFetch(path, params = {}, overrideKey = null) {
+      const auth = detectTmdbAuth(overrideKey !== null ? overrideKey : settings.tmdbKey);
       if (!auth) {
-        throw new Error('Please add your TMDB API key or Read Access Token in Settings.');
+        throw new Error('Add your TMDB v3 API Key or v4 Read Access Token in Settings first.');
       }
 
       const url = new URL(`https://api.themoviedb.org/3${path}`);
@@ -553,20 +723,20 @@
         url.searchParams.set('api_key', auth.key);
       }
 
-      const response = await fetch(url.toString(), { headers });
-      if (!response.ok) {
-        if (response.status === 401) {
-          throw new Error('TMDB rejected your API key/token (401). Please verify it in Settings.');
+      const res = await fetch(url.toString(), { headers });
+      if (!res.ok) {
+        if (res.status === 401) {
+          throw new Error('TMDB rejected that key/token (401). Double-check it in Settings.');
         }
-        throw new Error(`TMDB API error (${response.status}). Please try again.`);
+        throw new Error(`TMDB returned error ${res.status}. Please try again.`);
       }
-      return response.json();
+      return res.json();
     }
 
     async function fetchTmdbDetails(tmdbId, mediaType = 'movie') {
       const type = mediaType === 'tv' ? 'tv' : 'movie';
       const data = await tmdbFetch(`/${type}/${tmdbId}`);
-      const releaseDate = data.release_date || data.first_air_date || '';
+      const dateStr = data.release_date || data.first_air_date || '';
       const runtimeMins = type === 'tv'
         ? (Array.isArray(data.episode_run_time) && data.episode_run_time[0]) || null
         : data.runtime || null;
@@ -575,7 +745,7 @@
         tmdbId: data.id,
         mediaType: type,
         title: data.title || data.name || 'Untitled',
-        year: releaseDate.slice(0, 4),
+        year: dateStr.slice(0, 4),
         runtime: formatRuntime(runtimeMins, type, data.number_of_seasons),
         genres: Array.isArray(data.genres) ? data.genres.map((g) => g.name) : [],
         overview: data.overview || '',
@@ -586,38 +756,38 @@
     }
 
     /* =========================================================================
-       SYNC MISSING METADATA (With Smooth Progress Bar)
+       BATCH SYNC MISSING POSTERS & METADATA
        ========================================================================= */
 
-    async function syncMissingMetadata() {
-      if (isSyncing) return;
-      if (!detectTmdbAuthType(settings.tmdbKey)) {
-        showToast('Add a TMDB API Key or Read Access Token in Settings first.', 'warn');
-        openSettingsModal();
+    async function syncMissingPosters() {
+      if (isSyncingPosters) return;
+      if (!detectTmdbAuth(settings.tmdbKey)) {
+        showToast('Paste your TMDB key or token in Settings to sync posters!', 'warn');
+        openSettingsModal('general');
         return;
       }
 
       const missing = movies.filter((m) => !m.poster);
       if (!missing.length) {
-        showToast('All movies already have posters and metadata!', 'success');
+        showToast('Every title already has a poster! ✿', 'success');
         return;
       }
 
-      isSyncing = true;
+      isSyncingPosters = true;
       const wrap = $('syncProgressWrap');
       const bar = $('syncProgressBar');
-      const text = $('syncProgressText');
-      const countEl = $('syncProgressCount');
+      const txt = $('syncProgressText');
+      const cnt = $('syncProgressCount');
 
       wrap.classList.remove('hidden');
       bar.style.width = '0%';
 
-      let updatedCount = 0;
+      let found = 0;
 
       for (let i = 0; i < missing.length; i++) {
         const movie = missing[i];
-        text.textContent = `Fetching "${movie.title}"...`;
-        countEl.textContent = `${i + 1} / ${missing.length}`;
+        txt.textContent = `✿ Searching TMDB for "${movie.title}"...`;
+        cnt.textContent = `${i + 1} / ${missing.length}`;
         bar.style.width = `${Math.round(((i + 1) / missing.length) * 100)}%`;
 
         try {
@@ -626,13 +796,12 @@
             include_adult: 'false'
           });
           const hits = (searchData.results || []).filter((r) => r.media_type === 'movie' || r.media_type === 'tv');
-          // Prefer matching mediaType if set, otherwise first hit with a poster
-          const bestHit = hits.find((h) => h.media_type === movie.mediaType && h.poster_path)
+          const best = hits.find((h) => h.media_type === movie.mediaType && h.poster_path)
             || hits.find((h) => h.poster_path)
             || hits[0];
 
-          if (bestHit) {
-            const details = await fetchTmdbDetails(bestHit.id, bestHit.media_type);
+          if (best) {
+            const details = await fetchTmdbDetails(best.id, best.media_type);
             movie.tmdbId = details.tmdbId;
             movie.mediaType = details.mediaType;
             movie.poster = details.poster || movie.poster;
@@ -642,28 +811,26 @@
             movie.tmdbRating = details.tmdbRating ?? movie.tmdbRating;
             if (details.genres.length) movie.genres = details.genres;
             if (!movie.overview && details.overview) movie.overview = details.overview;
-            updatedCount++;
+            found++;
             saveMovies();
           }
         } catch (err) {
-          console.warn(`Sync failed for ${movie.title}:`, err);
+          console.warn(`Sync error for ${movie.title}:`, err);
           if (String(err.message).includes('401')) {
             showToast(err.message, 'error');
             break;
           }
         }
-
-        // Gentle pacing to respect TMDB rate limits
         await new Promise((r) => setTimeout(r, 140));
       }
 
-      isSyncing = false;
+      isSyncingPosters = false;
       setTimeout(() => wrap.classList.add('hidden'), 900);
-      showToast(`Synced metadata for ${updatedCount} of ${missing.length} titles.`, updatedCount > 0 ? 'success' : 'warn');
+      showToast(`Found posters & details for ${found} of ${missing.length} titles!`, found > 0 ? 'success' : 'warn');
     }
 
     /* =========================================================================
-       GITHUB REST API SYNC (Push & Pull movies.json)
+       GITHUB CONTENTS API SYNC (Push & Pull movies.json)
        ========================================================================= */
 
     function isGithubConfigured() {
@@ -672,8 +839,8 @@
 
     async function pushToGitHub() {
       if (!isGithubConfigured()) {
-        showToast('Configure your GitHub repo and Personal Access Token in Settings.', 'warn');
-        openSettingsModal();
+        showToast('Enter your GitHub repo & Personal Access Token in Settings.', 'warn');
+        openSettingsModal('github');
         return;
       }
 
@@ -692,41 +859,37 @@
       try {
         showToast('Pushing shelf to GitHub...', 'info');
 
-        // 1. Check if file exists to obtain its SHA
         let sha = null;
         const getRes = await fetch(`${apiUrl}?ref=${encodeURIComponent(branch)}`, { headers });
         if (getRes.ok) {
           const existing = await getRes.json();
           sha = existing.sha;
         } else if (getRes.status !== 404) {
-          const errData = await getRes.json().catch(() => ({}));
-          throw new Error(errData.message || `GitHub GET failed (${getRes.status})`);
+          const err = await getRes.json().catch(() => ({}));
+          throw new Error(err.message || `GitHub GET failed (${getRes.status})`);
         }
 
-        // 2. Commit updated JSON
-        const jsonContent = JSON.stringify(movies, null, 2);
-        const body = {
-          message: `Update movie shelf (${movies.length} titles)`,
-          content: utf8ToBase64(jsonContent),
+        const payload = {
+          message: `Update S&M's couch (${movies.length} titles)`,
+          content: utf8ToBase64(JSON.stringify(movies, null, 2)),
           branch
         };
-        if (sha) body.sha = sha;
+        if (sha) payload.sha = sha;
 
         const putRes = await fetch(apiUrl, {
           method: 'PUT',
           headers,
-          body: JSON.stringify(body)
+          body: JSON.stringify(payload)
         });
 
         if (!putRes.ok) {
-          const errData = await putRes.json().catch(() => ({}));
-          throw new Error(errData.message || `GitHub PUT failed (${putRes.status})`);
+          const err = await putRes.json().catch(() => ({}));
+          throw new Error(err.message || `GitHub PUT failed (${putRes.status})`);
         }
 
-        $('storageStatus').textContent = `Synced with ${repo} (${branch})`;
-        showToast('Successfully pushed movies.json to GitHub!', 'success');
+        $('storageBadge').textContent = `✿ Synced: ${repo}`;
+        showToast('Pushed movies.json to GitHub! ✿', 'success');
       } catch (err) {
-        console.error(err);
         showToast(`GitHub Push failed: ${err.message}`, 'error');
       }
     }
@@ -738,8 +901,8 @@
       const token = (settings.ghToken || '').trim();
 
       if (!repo || !repo.includes('/')) {
-        showToast('Enter your GitHub repository (owner/repo) in Settings first.', 'warn');
-        openSettingsModal();
+        showToast('Enter your GitHub repository (owner/repo) first.', 'warn');
+        openSettingsModal('github');
         return;
       }
 
@@ -751,213 +914,230 @@
         showToast('Pulling movies.json from GitHub...', 'info');
         const res = await fetch(apiUrl, { headers, cache: 'no-store' });
         if (!res.ok) {
-          const errData = await res.json().catch(() => ({}));
-          throw new Error(errData.message || `GitHub Pull failed (${res.status})`);
+          const err = await res.json().catch(() => ({}));
+          throw new Error(err.message || `GitHub Pull failed (${res.status})`);
         }
         const data = await res.json();
-        const decoded = base64ToUtf8(data.content || '');
-        const parsed = JSON.parse(decoded);
-        if (!Array.isArray(parsed)) throw new Error('File content is not a valid movie list.');
+        const parsed = JSON.parse(base64ToUtf8(data.content || ''));
+        if (!Array.isArray(parsed)) throw new Error('File is not a valid movie list.');
 
         movies = parsed.map((m, i) => normalizeMovie(m, i));
         saveMovies();
-        $('storageStatus').textContent = `Pulled from ${repo} (${branch})`;
+        $('storageBadge').textContent = `✿ Pulled: ${repo}`;
         showToast(`Pulled ${movies.length} movies from GitHub!`, 'success');
       } catch (err) {
-        console.error(err);
         showToast(`GitHub Pull failed: ${err.message}`, 'error');
       }
     }
 
     /* =========================================================================
-       FILTERING, SORTING & RENDERING
+       FILTERING, SORTING & GRID RENDERING
        ========================================================================= */
 
+    function updateHeaderButtons() {
+      const missingCount = movies.filter((m) => !m.poster).length;
+      const syncBtn = $('btnSyncPosters');
+      if (missingCount > 0) {
+        syncBtn.classList.remove('hidden');
+        $('syncPostersLabel').textContent = `Sync Posters (${missingCount})`;
+      } else {
+        syncBtn.classList.add('hidden');
+      }
+      $('btnQuickPush').classList.toggle('hidden', !isGithubConfigured());
+    }
+
     function getFilteredMovies() {
-      const query = $('filterSearch').value.trim().toLowerCase();
+      const q = $('filterSearch').value.trim().toLowerCase();
       const genre = $('filterGenre').value;
-      const status = $('filterStatus').value;
+      const mood = $('filterMood').value;
       const sort = $('filterSort').value;
 
-      let list = movies.filter((m) => {
-        if (query) {
-          const haystack = `${m.title} ${m.overview} ${(m.genres || []).join(' ')} ${m.note || ''} ${m.year || ''}`.toLowerCase();
-          if (!haystack.includes(query)) return false;
+      const list = movies.filter((m) => {
+        if (q) {
+          const hay = `${m.title} ${m.overview} ${(m.genres || []).join(' ')} ${m.mood || ''} ${m.note || ''} ${m.year || ''}`.toLowerCase();
+          if (!hay.includes(q)) return false;
         }
         if (genre && !(m.genres || []).includes(genre)) return false;
-        if (status === 'watched' && !m.watched) return false;
-        if (status === 'unwatched' && m.watched) return false;
+        if (mood && m.mood !== mood) return false;
+        if (activeStatusFilter === 'watched' && !m.watched) return false;
+        if (activeStatusFilter === 'unwatched' && m.watched) return false;
         return true;
       });
 
       list.sort((a, b) => {
         switch (sort) {
-          case 'title':
-            return a.title.localeCompare(b.title);
-          case 'tmdbDesc':
-            return (b.tmdbRating || 0) - (a.tmdbRating || 0) || a.title.localeCompare(b.title);
+          case 'recent':
+            return (b.addedAt || 0) - (a.addedAt || 0);
           case 'yearDesc':
             return (Number(b.year) || 0) - (Number(a.year) || 0) || a.title.localeCompare(b.title);
+          case 'yearAsc':
+            return (Number(a.year) || 9999) - (Number(b.year) || 9999) || a.title.localeCompare(b.title);
+          case 'tmdbDesc':
+            return (b.tmdbRating || 0) - (a.tmdbRating || 0) || a.title.localeCompare(b.title);
           case 'coupleDesc':
             return (getCoupleAverage(b) || 0) - (getCoupleAverage(a) || 0) || a.title.localeCompare(b.title);
-          case 'recent':
+          case 'title':
           default:
-            return (b.addedAt || 0) - (a.addedAt || 0);
+            return a.title.localeCompare(b.title);
         }
       });
 
       return list;
     }
 
-    function updateHeaderControls() {
-      const missingCount = movies.filter((m) => !m.poster).length;
-      const syncBtn = $('btnSyncMissing');
-      if (missingCount > 0) {
-        syncBtn.classList.remove('hidden');
-        $('syncMissingLabel').textContent = `Sync Posters (${missingCount})`;
-      } else {
-        syncBtn.classList.add('hidden');
-      }
-
-      const pushBtn = $('btnQuickPush');
-      if (isGithubConfigured()) {
-        pushBtn.classList.remove('hidden');
-      } else {
-        pushBtn.classList.add('hidden');
-      }
-    }
-
     function renderApp() {
-      updateHeaderControls();
+      updateHeaderButtons();
 
       // Update Stats
       const watchedCount = movies.filter((m) => m.watched).length;
+      const allGenres = [...new Set(movies.flatMap((m) => m.genres || []))].sort((a, b) => a.localeCompare(b));
       $('statTotal').textContent = movies.length;
       $('statWatched').textContent = watchedCount;
-      $('statWatchlist').textContent = movies.length - watchedCount;
+      $('statUnwatched').textContent = movies.length - watchedCount;
+      $('statGenres').textContent = allGenres.length;
 
-      // Update Dynamic Genre Dropdown
-      const currentGenre = $('filterGenre').value;
-      const allGenres = [...new Set(movies.flatMap((m) => m.genres || []))].sort((a, b) => a.localeCompare(b));
+      // Update Genre dropdown while preserving selection
+      const prevGenre = $('filterGenre').value;
       $('filterGenre').innerHTML = '<option value="">All Genres</option>' +
-        allGenres.map((g) => `<option value="${escapeHtml(g)}" ${g === currentGenre ? 'selected' : ''}>${escapeHtml(g)}</option>`).join('');
+        allGenres.map((g) => `<option value="${escapeHtml(g)}" ${g === prevGenre ? 'selected' : ''}>${escapeHtml(g)}</option>`).join('');
 
-      // Render Filtered Grid
       const filtered = getFilteredMovies();
-      const hasActiveFilters = Boolean($('filterSearch').value.trim() || $('filterGenre').value || $('filterStatus').value !== 'all');
-      $('btnResetFilters').classList.toggle('hidden', !hasActiveFilters);
-      $('resultsSummary').textContent = `Showing ${filtered.length} of ${movies.length} ${movies.length === 1 ? 'film' : 'films'}`;
+      const hasFilters = Boolean($('filterSearch').value.trim() || $('filterGenre').value || $('filterMood').value || activeStatusFilter !== 'all');
+      $('btnClearFilters').classList.toggle('hidden', !hasFilters);
+      $('filterSummary').textContent = `${filtered.length} of ${movies.length} titles`;
 
       const grid = $('movieGrid');
       if (!filtered.length) {
         grid.innerHTML = `
-          <div class="col-span-full py-16 px-6 text-center bg-cinema-surface/60 border border-dashed border-cinema-border rounded-2xl">
-            <p class="font-serif text-xl text-white mb-1.5">No movies match your filters</p>
-            <p class="text-sm text-cinema-muted mb-5">Try clearing your search or add a new film to your shelf.</p>
-            <button onclick="resetFilters()" class="px-4 py-2 rounded-xl bg-cinema-elevated border border-cinema-border text-sm text-white hover:border-cinema-rose transition cursor-pointer">
-              Clear Filters
+          <div class="col-span-full retro-box rounded-3xl bg-cream py-14 px-6 text-center">
+            <div class="text-4xl mb-2">✿</div>
+            <h3 class="font-serif text-2xl font-bold text-ink mb-1">No movies match right now</h3>
+            <p class="text-sm text-inkSoft mb-5">Try clearing a filter or add a new film to your scrapbook shelf.</p>
+            <button onclick="clearFilters()" class="retro-btn px-5 py-2 rounded-2xl bg-buttercup text-ink font-semibold text-sm cursor-pointer">
+              Clear All Filters
             </button>
           </div>`;
         return;
       }
 
-      grid.innerHTML = filtered.map((m) => {
+      grid.innerHTML = filtered.map((m, idx) => {
+        const tapeColor = WASHI_COLORS[idx % WASHI_COLORS.length];
         const coupleAvg = getCoupleAverage(m);
-        const primaryGenre = (m.genres && m.genres[0]) || 'Film';
-        const secondaryGenre = (m.genres && m.genres[1]) || '';
+        const moodClass = MOOD_COLORS[m.mood] || 'bg-paper text-inkSoft';
+        const topGenres = (m.genres || []).slice(0, 2);
 
         return `
-          <article data-movie-id="${escapeHtml(m.id)}"
-            class="movie-card group relative flex flex-col bg-cinema-surface border border-cinema-border rounded-2xl overflow-hidden hover:border-cinema-rose/50 hover:-translate-y-1 transition-all duration-200 cursor-pointer shadow-md hover:shadow-xl hover:shadow-black/40">
+          <article data-id="${escapeHtml(m.id)}"
+            class="movie-card retro-card relative flex flex-col bg-cream rounded-2xl cursor-pointer group">
 
-            <!-- 2:3 Poster Area -->
-            <div class="relative aspect-[2/3] w-full bg-cinema-elevated overflow-hidden">
+            <!-- Cute Pastel Washi Tape Accent -->
+            <div class="washi-tape rounded-sm" style="background-color: ${tapeColor}; transform: translateX(-50%) rotate(${idx % 2 === 0 ? '-2.2deg' : '2.2deg'});"></div>
+
+            <!-- 2:3 Poster Frame -->
+            <div class="relative aspect-[2/3] w-full rounded-t-[14px] overflow-hidden border-b-2 border-ink bg-paper">
               ${m.poster ? `
                 <img src="${escapeHtml(m.poster)}" alt="${escapeHtml(m.title)} poster" loading="lazy"
                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                   class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300" />
               ` : ''}
 
-              <!-- Typographic Criterion-style Fallback Poster -->
-              <div class="${m.poster ? 'hidden' : 'flex'} absolute inset-0 flex-col justify-between p-4 bg-gradient-to-br from-[#231d29] via-[#171923] to-[#121319]">
-                <div class="flex items-center justify-between text-[10px] uppercase tracking-widest text-cinema-amber/80">
-                  <span>${escapeHtml(primaryGenre)}</span>
-                  <span>${escapeHtml(m.year || '')}</span>
+              <!-- Vintage VHS/Storybook Fallback Poster -->
+              <div class="${m.poster ? 'hidden' : 'flex'} absolute inset-0 flex-col justify-between p-3.5"
+                style="background: linear-gradient(145deg, ${tapeColor}55, #fff7eb 65%, #f5e6ff);">
+                <div class="flex items-center justify-between font-mono text-[10px] font-bold text-ink/75">
+                  <span class="uppercase tracking-wider truncate">${escapeHtml((m.genres && m.genres[0]) || 'VHS')}</span>
+                  <span>${escapeHtml(m.year || '★')}</span>
                 </div>
                 <div class="my-auto text-center px-1">
-                  <h4 class="font-serif text-lg sm:text-xl leading-snug text-white/95 line-clamp-4">${escapeHtml(m.title)}</h4>
+                  <span class="block text-coral text-lg mb-1">✿</span>
+                  <h4 class="font-serif text-base sm:text-lg font-bold text-ink leading-snug line-clamp-4">${escapeHtml(m.title)}</h4>
                 </div>
-                <div class="text-center text-[10px] text-cinema-muted/70 tracking-wider uppercase">S&M's couch</div>
+                <div class="font-mono text-[9px] text-center uppercase tracking-widest text-inkSoft border-t border-dashed border-ink/30 pt-1.5">
+                  S&M's couch
+                </div>
               </div>
 
-              <!-- Subtle Bottom Gradient Overlay -->
-              <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none"></div>
-
-              <!-- Top-Left: Watched Badge -->
+              <!-- Watched Sticker Badge -->
               ${m.watched ? `
-                <span class="absolute top-2.5 left-2.5 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/90 text-[#07150e] shadow">
-                  <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                  Watched
+                <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full bg-pistachio border-2 border-ink font-mono text-[10px] font-bold text-ink shadow-[2px_2px_0_#38263b]">
+                  ✓ Watched
                 </span>
               ` : ''}
 
-              <!-- Top-Right: TMDB Rating -->
+              <!-- TMDB Rating Sticker -->
               ${m.tmdbRating ? `
-                <span class="absolute top-2.5 right-2.5 inline-flex items-center gap-1 px-2 py-0.5 rounded-lg text-[11px] font-semibold bg-black/75 backdrop-blur-sm text-cinema-amber border border-white/10">
+                <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-xl bg-buttercup border-2 border-ink font-mono text-[10px] font-bold text-ink shadow-[2px_2px_0_#38263b]">
                   ★ ${m.tmdbRating.toFixed(1)}
                 </span>
               ` : ''}
 
-              <!-- Bottom-Left: Couple Average Pill -->
+              <!-- Couple Average Heart Sticker -->
               ${coupleAvg ? `
-                <span class="absolute bottom-2.5 left-2.5 inline-flex items-center gap-1 px-2 py-0.5 rounded-lg text-[11px] font-semibold bg-cinema-rose/90 text-[#1a0d12] shadow">
-                  ♥ ${coupleAvg.toFixed(1)}
+                <span class="absolute bottom-2.5 left-2.5 px-2 py-0.5 rounded-xl bg-strawberry border-2 border-ink font-mono text-[10px] font-bold text-ink shadow-[2px_2px_0_#38263b]">
+                  ♡ ${coupleAvg.toFixed(1)}
                 </span>
               ` : ''}
             </div>
 
-            <!-- Card Footer Info -->
+            <!-- Card Body -->
             <div class="p-3 sm:p-3.5 flex flex-col flex-1 justify-between gap-2">
               <div>
-                <h3 class="font-medium text-sm sm:text-[15px] text-white leading-snug line-clamp-2 group-hover:text-cinema-rose transition-colors">
+                <h3 class="font-serif font-bold text-[15px] sm:text-base text-ink leading-snug line-clamp-2 group-hover:text-coral transition-colors">
                   ${escapeHtml(m.title)}
                 </h3>
-                <div class="flex items-center gap-1.5 text-[11px] text-cinema-muted mt-1">
-                  ${m.year ? `<span>${escapeHtml(m.year)}</span>` : ''}
-                  ${m.year && m.runtime ? '<span>·</span>' : ''}
-                  ${m.runtime ? `<span>${escapeHtml(m.runtime)}</span>` : ''}
+                <div class="font-mono text-[11px] text-inkSoft mt-1 flex items-center gap-1.5">
+                  ${m.year ? `<span>${escapeHtml(m.year)}</span>` : '<span>—</span>'}
+                  ${m.runtime ? `<span>·</span><span>${escapeHtml(m.runtime)}</span>` : ''}
                 </div>
               </div>
 
-              <div class="flex flex-wrap gap-1 pt-1">
-                ${primaryGenre ? `<span class="text-[10px] px-2 py-0.5 rounded-md bg-cinema-elevated border border-cinema-border text-cinema-muted">${escapeHtml(primaryGenre)}</span>` : ''}
-                ${secondaryGenre ? `<span class="text-[10px] px-2 py-0.5 rounded-md bg-cinema-elevated border border-cinema-border text-cinema-muted">${escapeHtml(secondaryGenre)}</span>` : ''}
+              <div class="space-y-1.5 pt-1">
+                ${m.mood ? `
+                  <span class="inline-block text-[10px] font-semibold px-2 py-0.5 rounded-full border border-ink ${moodClass}">
+                    ${escapeHtml(m.mood)}
+                  </span>
+                ` : ''}
+                <div class="flex flex-wrap gap-1">
+                  ${topGenres.map((g) => `<span class="text-[10px] px-2 py-0.5 rounded-lg bg-paper border border-ink/40 text-inkSoft font-medium">${escapeHtml(g)}</span>`).join('')}
+                </div>
               </div>
             </div>
           </article>
         `;
       }).join('');
 
-      // Attach Card Click Handlers
       grid.querySelectorAll('.movie-card').forEach((card) => {
-        card.addEventListener('click', () => openDetailModal(card.dataset.movieId));
+        card.addEventListener('click', () => openDetailModal(card.dataset.id));
       });
     }
 
-    function resetFilters() {
+    function clearFilters() {
       $('filterSearch').value = '';
       $('filterGenre').value = '';
-      $('filterStatus').value = 'all';
+      $('filterMood').value = '';
+      setStatusFilter('all');
+    }
+
+    function setStatusFilter(status) {
+      activeStatusFilter = status;
+      document.querySelectorAll('.status-pill').forEach((btn) => {
+        const isActive = btn.dataset.status === status;
+        btn.className = `status-pill px-3.5 py-1 rounded-xl text-xs font-semibold transition cursor-pointer ${
+          isActive
+            ? 'bg-buttercup text-ink border-2 border-ink'
+            : 'text-inkSoft hover:text-ink border-2 border-transparent'
+        }`;
+      });
       renderApp();
     }
 
     /* =========================================================================
-       MODAL MANAGER
+       MODAL HELPER
        ========================================================================= */
 
     function openModal(html, maxWidthClass = 'max-w-2xl') {
       const container = $('modalContainer');
-      container.className = `w-full ${maxWidthClass} bg-cinema-surface border border-cinema-border rounded-2xl shadow-2xl overflow-hidden my-auto animate-modal`;
+      container.className = `w-full ${maxWidthClass} bg-cream retro-box rounded-3xl overflow-hidden my-auto animate-pop`;
       container.innerHTML = html;
       $('modalBackdrop').classList.remove('hidden');
       $('modalBackdrop').classList.add('flex');
@@ -981,191 +1161,241 @@
     });
 
     /* =========================================================================
-       ADD MOVIE MODAL (TMDB Live Multi-Search + Manual Fallback)
+       + ADD MOVIE MODAL (Live TMDB Search + 1-Click Mood Preview + Manual Tab)
        ========================================================================= */
 
     function openAddMovieModal() {
-      const hasApi = Boolean(detectTmdbAuthType(settings.tmdbKey));
+      const hasApi = Boolean(detectTmdbAuth(settings.tmdbKey));
 
       openModal(`
-        <div class="p-5 sm:p-6">
-          <div class="flex items-center justify-between gap-4 pb-4 border-b border-cinema-border">
+        <div class="p-5 sm:p-6 max-h-[90vh] overflow-y-auto">
+          <div class="flex items-center justify-between gap-3 pb-4 border-b-2 border-dashed border-ink/25">
             <div>
-              <h2 class="font-serif text-2xl font-semibold text-white">Add to Shelf</h2>
-              <p class="text-xs text-cinema-muted mt-0.5">Search TMDB to auto-fill posters &amp; details, or enter manually.</p>
+              <h2 class="font-serif text-2xl sm:text-3xl font-bold text-ink">Add to Our Shelf ✿</h2>
+              <p class="text-xs text-inkSoft mt-0.5">Search TMDB for instant posters &amp; details, or enter manually.</p>
             </div>
-            <button onclick="closeModal()" class="p-2 rounded-xl text-cinema-muted hover:text-white hover:bg-cinema-elevated transition cursor-pointer" aria-label="Close">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            <button onclick="closeModal()" class="retro-btn w-9 h-9 rounded-xl bg-paper text-ink font-bold flex items-center justify-center cursor-pointer" aria-label="Close">✕</button>
+          </div>
+
+          <!-- Mode Switch Tabs -->
+          <div class="flex gap-2 mt-4 p-1.5 rounded-2xl bg-paper border-2 border-ink">
+            <button id="tabAddTmdb" class="flex-1 py-2 rounded-xl text-xs sm:text-sm font-semibold transition cursor-pointer ${hasApi ? 'bg-buttercup text-ink border-2 border-ink' : 'text-inkSoft border-2 border-transparent'}">
+              ★ Search TMDB
+            </button>
+            <button id="tabAddManual" class="flex-1 py-2 rounded-xl text-xs sm:text-sm font-semibold transition cursor-pointer ${!hasApi ? 'bg-buttercup text-ink border-2 border-ink' : 'text-inkSoft border-2 border-transparent'}">
+              ✎ Add Manually
             </button>
           </div>
 
-          <!-- Mode Tabs -->
-          <div class="flex gap-2 mt-4 p-1 bg-cinema-bg rounded-xl border border-cinema-border">
-            <button id="tabTmdb" class="flex-1 py-2 text-xs sm:text-sm font-medium rounded-lg transition cursor-pointer ${hasApi ? 'bg-cinema-elevated text-white shadow' : 'text-cinema-muted hover:text-white'}">
-              Search TMDB
-            </button>
-            <button id="tabManual" class="flex-1 py-2 text-xs sm:text-sm font-medium rounded-lg transition cursor-pointer ${!hasApi ? 'bg-cinema-elevated text-white shadow' : 'text-cinema-muted hover:text-white'}">
-              Manual Entry
-            </button>
-          </div>
-
-          <!-- TMDB Search Panel -->
-          <div id="panelTmdb" class="mt-4 ${hasApi ? '' : 'hidden'}">
+          <!-- TMDB SEARCH PANEL -->
+          <div id="panelAddTmdb" class="mt-4 ${hasApi ? '' : 'hidden'}">
             ${!hasApi ? `
-              <div class="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs mb-4 flex items-center justify-between gap-3">
-                <span>No TMDB API key configured yet. Add one in Settings to enable 1-click search.</span>
-                <button onclick="openSettingsModal()" class="shrink-0 px-3 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-100 font-semibold cursor-pointer">Open Settings</button>
+              <div class="retro-box-sm rounded-2xl bg-buttercup/60 p-3.5 mb-4 flex flex-wrap items-center justify-between gap-2 text-xs">
+                <span class="font-medium text-ink">Paste a free TMDB v3 API Key or v4 Token in Settings to enable instant search!</span>
+                <button onclick="openSettingsModal('general')" class="retro-btn px-3 py-1.5 rounded-xl bg-cream text-ink font-semibold cursor-pointer">Open Settings</button>
               </div>
             ` : ''}
 
             <div class="flex gap-2">
-              <input id="tmdbSearchInput" type="text" placeholder="Type a movie or TV show (e.g. Past Lives, La La Land)..."
-                class="flex-1 bg-cinema-bg border border-cinema-border rounded-xl px-4 py-2.5 text-sm text-white placeholder-cinema-muted focus:outline-none focus:border-cinema-rose transition" />
-              <button id="btnRunTmdbSearch"
-                class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-cinema-rose to-cinema-amber text-[#121014] font-semibold text-sm hover:brightness-110 transition cursor-pointer">
+              <input id="tmdbSearchInput" type="text" placeholder="Type a movie or TV series (e.g. Past Lives, Amélie)..."
+                class="retro-input flex-1 rounded-2xl px-4 py-2.5 text-sm" />
+              <button id="btnRunSearch" class="retro-btn px-4 py-2.5 rounded-2xl bg-coral text-cream font-semibold text-sm cursor-pointer">
                 Search
               </button>
             </div>
 
-            <div id="tmdbSearchResults" class="mt-4 space-y-2 max-h-[52vh] overflow-y-auto pr-1">
-              <p class="text-xs text-cinema-muted text-center py-8">Start typing or press Enter to search TMDB.</p>
+            <!-- Selected Result Quick-Confirm Preview -->
+            <div id="tmdbPreviewBox" class="hidden mt-4 retro-box-sm rounded-2xl bg-paper p-4"></div>
+
+            <!-- Live Search Results List -->
+            <div id="tmdbResultsList" class="mt-4 space-y-2.5 max-h-[46vh] overflow-y-auto pr-1">
+              <p class="text-xs text-inkSoft text-center py-8 font-mono">★ Start typing or press Enter to search TMDB ★</p>
             </div>
           </div>
 
-          <!-- Manual Entry Panel -->
-          <form id="panelManual" class="mt-4 space-y-3.5 ${!hasApi ? '' : 'hidden'}">
+          <!-- MANUAL ENTRY PANEL -->
+          <form id="panelAddManual" class="mt-4 space-y-3.5 ${!hasApi ? '' : 'hidden'}">
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <div class="sm:col-span-2">
-                <label class="block text-xs text-cinema-muted mb-1">Title *</label>
-                <input id="manTitle" required type="text" placeholder="e.g. Eternal Sunshine of the Spotless Mind"
-                  class="w-full bg-cinema-bg border border-cinema-border rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-cinema-rose" />
+                <label class="block text-xs font-semibold text-ink mb-1">Movie / Show Title *</label>
+                <input id="manTitle" required type="text" placeholder="e.g. Amélie" class="retro-input w-full rounded-xl px-3.5 py-2 text-sm" />
               </div>
               <div>
-                <label class="block text-xs text-cinema-muted mb-1">Release Year</label>
-                <input id="manYear" type="number" min="1888" max="2035" placeholder="2004"
-                  class="w-full bg-cinema-bg border border-cinema-border rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-cinema-rose" />
+                <label class="block text-xs font-semibold text-ink mb-1">Year</label>
+                <input id="manYear" type="number" min="1888" max="2035" placeholder="2001" class="retro-input w-full rounded-xl px-3.5 py-2 text-sm" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-ink mb-1">Genres (comma-separated)</label>
+                <input id="manGenres" type="text" placeholder="Romance, Comedy" class="retro-input w-full rounded-xl px-3.5 py-2 text-sm" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-ink mb-1">Date-Night Mood</label>
+                <select id="manMood" class="retro-input w-full rounded-xl px-3 py-2 text-sm cursor-pointer">
+                  <option value="">Pick a mood...</option>
+                  ${moodSelectOptions()}
+                </select>
               </div>
             </div>
 
             <div>
-              <label class="block text-xs text-cinema-muted mb-1">Genres (comma-separated)</label>
-              <input id="manGenres" type="text" placeholder="Romance, Science Fiction, Drama"
-                class="w-full bg-cinema-bg border border-cinema-border rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-cinema-rose" />
-            </div>
-
-            <div>
-              <label class="block text-xs text-cinema-muted mb-1">Synopsis</label>
-              <textarea id="manOverview" rows="3" placeholder="A short spoiler-free description..."
-                class="w-full bg-cinema-bg border border-cinema-border rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-cinema-rose resize-none"></textarea>
+              <label class="block text-xs font-semibold text-ink mb-1">Short Synopsis</label>
+              <textarea id="manOverview" rows="3" placeholder="A cute spoiler-free summary..."
+                class="retro-input w-full rounded-xl px-3.5 py-2 text-sm resize-none"></textarea>
             </div>
 
             <div class="flex justify-end gap-2 pt-2">
-              <button type="button" onclick="closeModal()" class="px-4 py-2 rounded-xl bg-cinema-elevated text-sm text-cinema-muted hover:text-white transition cursor-pointer">Cancel</button>
-              <button type="submit" class="px-5 py-2 rounded-xl bg-gradient-to-r from-cinema-rose to-cinema-amber text-[#121014] font-semibold text-sm hover:brightness-110 transition cursor-pointer">Add Movie</button>
+              <button type="button" onclick="closeModal()" class="retro-btn px-4 py-2 rounded-xl bg-paper text-ink text-sm font-semibold cursor-pointer">Cancel</button>
+              <button type="submit" class="retro-btn px-5 py-2 rounded-xl bg-coral text-cream text-sm font-semibold cursor-pointer">Add to Shelf ✿</button>
             </div>
           </form>
         </div>
       `);
 
-      // Tab Switching
       const switchTab = (mode) => {
         const isTmdb = mode === 'tmdb';
-        $('panelTmdb').classList.toggle('hidden', !isTmdb);
-        $('panelManual').classList.toggle('hidden', isTmdb);
-        $('tabTmdb').className = `flex-1 py-2 text-xs sm:text-sm font-medium rounded-lg transition cursor-pointer ${isTmdb ? 'bg-cinema-elevated text-white shadow' : 'text-cinema-muted hover:text-white'}`;
-        $('tabManual').className = `flex-1 py-2 text-xs sm:text-sm font-medium rounded-lg transition cursor-pointer ${!isTmdb ? 'bg-cinema-elevated text-white shadow' : 'text-cinema-muted hover:text-white'}`;
+        $('panelAddTmdb').classList.toggle('hidden', !isTmdb);
+        $('panelAddManual').classList.toggle('hidden', isTmdb);
+        $('tabAddTmdb').className = `flex-1 py-2 rounded-xl text-xs sm:text-sm font-semibold transition cursor-pointer ${isTmdb ? 'bg-buttercup text-ink border-2 border-ink' : 'text-inkSoft border-2 border-transparent'}`;
+        $('tabAddManual').className = `flex-1 py-2 rounded-xl text-xs sm:text-sm font-semibold transition cursor-pointer ${!isTmdb ? 'bg-buttercup text-ink border-2 border-ink' : 'text-inkSoft border-2 border-transparent'}`;
         if (isTmdb) $('tmdbSearchInput').focus();
         else $('manTitle').focus();
       };
 
-      $('tabTmdb').onclick = () => switchTab('tmdb');
-      $('tabManual').onclick = () => switchTab('manual');
+      $('tabAddTmdb').onclick = () => switchTab('tmdb');
+      $('tabAddManual').onclick = () => switchTab('manual');
 
-      // TMDB Live & Enter Search
       const input = $('tmdbSearchInput');
+      const resultsBox = $('tmdbResultsList');
+      const previewBox = $('tmdbPreviewBox');
+
       const runSearch = async () => {
         const q = input.value.trim();
-        const box = $('tmdbSearchResults');
+        previewBox.classList.add('hidden');
         if (!q) {
-          box.innerHTML = '<p class="text-xs text-cinema-muted text-center py-8">Start typing or press Enter to search TMDB.</p>';
+          resultsBox.innerHTML = '<p class="text-xs text-inkSoft text-center py-8 font-mono">★ Start typing or press Enter to search TMDB ★</p>';
           return;
         }
-        if (!detectTmdbAuthType(settings.tmdbKey)) {
-          box.innerHTML = '<p class="text-xs text-amber-300 text-center py-6">Please add your TMDB key/token in Settings to search.</p>';
+        if (!detectTmdbAuth(settings.tmdbKey)) {
+          resultsBox.innerHTML = '<p class="text-xs text-coral font-semibold text-center py-6">Add your TMDB key or token in Settings to search.</p>';
           return;
         }
 
-        box.innerHTML = '<p class="text-xs text-cinema-muted text-center py-8">Searching TMDB...</p>';
+        resultsBox.innerHTML = '<p class="text-xs text-inkSoft text-center py-8 font-mono">✿ Searching TMDB reels...</p>';
         try {
           const data = await tmdbFetch('/search/multi', { query: q, include_adult: 'false' });
-          const hits = (data.results || []).filter((x) => x.media_type === 'movie' || x.media_type === 'tv').slice(0, 10);
+          const hits = (data.results || []).filter((r) => r.media_type === 'movie' || r.media_type === 'tv').slice(0, 10);
 
           if (!hits.length) {
-            box.innerHTML = '<p class="text-xs text-cinema-muted text-center py-8">No movies or shows found. Try another spelling or use Manual Entry.</p>';
+            resultsBox.innerHTML = '<p class="text-xs text-inkSoft text-center py-8">No matching titles found. Try another spelling or use Add Manually!</p>';
             return;
           }
 
-          box.innerHTML = hits.map((hit, idx) => {
+          resultsBox.innerHTML = hits.map((hit, i) => {
             const title = hit.title || hit.name || 'Untitled';
             const year = (hit.release_date || hit.first_air_date || '').slice(0, 4);
-            const alreadyAdded = movies.some((m) => m.tmdbId === hit.id && m.mediaType === hit.media_type);
-            const posterUrl = hit.poster_path ? `https://image.tmdb.org/t/p/w92${hit.poster_path}` : '';
+            const exists = movies.some((m) => m.tmdbId === hit.id && m.mediaType === hit.media_type);
+            const thumb = hit.poster_path ? `https://image.tmdb.org/t/p/w92${hit.poster_path}` : '';
 
             return `
-              <button data-hit-idx="${idx}" ${alreadyAdded ? 'disabled' : ''}
-                class="w-full flex items-center gap-3.5 p-2.5 rounded-xl bg-cinema-bg border border-cinema-border hover:border-cinema-rose/60 hover:bg-cinema-elevated/70 text-left transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
-                ${posterUrl
-                  ? `<img src="${posterUrl}" alt="" class="w-11 h-16 object-cover rounded-lg shrink-0 bg-cinema-elevated" />`
-                  : `<div class="w-11 h-16 rounded-lg bg-cinema-elevated border border-cinema-border flex items-center justify-center text-[10px] text-cinema-muted shrink-0">N/A</div>`
+              <button data-hit="${i}" ${exists ? 'disabled' : ''}
+                class="w-full flex items-center gap-3 p-2.5 rounded-2xl bg-paper border-2 border-ink hover:bg-buttercup/35 text-left transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
+                ${thumb
+                  ? `<img src="${thumb}" alt="" class="w-11 h-16 object-cover rounded-xl border-2 border-ink shrink-0" />`
+                  : `<div class="w-11 h-16 rounded-xl border-2 border-ink bg-lavender/40 flex items-center justify-center font-mono text-[10px] shrink-0">VHS</div>`
                 }
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center gap-2">
-                    <span class="font-medium text-sm text-white truncate">${escapeHtml(title)}</span>
-                    ${alreadyAdded ? '<span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 shrink-0">On Shelf</span>' : ''}
+                    <span class="font-serif font-bold text-sm text-ink truncate">${escapeHtml(title)}</span>
+                    ${exists ? '<span class="font-mono text-[10px] px-2 py-0.5 rounded-full bg-pistachio border border-ink shrink-0">On Shelf</span>' : ''}
                   </div>
-                  <div class="text-xs text-cinema-muted mt-0.5 flex items-center gap-2">
+                  <div class="font-mono text-[11px] text-inkSoft mt-0.5 flex items-center gap-1.5">
                     <span>${year || '—'}</span>
                     <span>·</span>
                     <span>${hit.media_type === 'tv' ? 'TV Series' : 'Movie'}</span>
-                    ${hit.vote_average ? `<span>·</span><span class="text-cinema-amber">★ ${hit.vote_average.toFixed(1)}</span>` : ''}
+                    ${hit.vote_average ? `<span>·</span><span class="text-coral font-bold">★ ${hit.vote_average.toFixed(1)}</span>` : ''}
                   </div>
-                  <p class="text-xs text-cinema-muted/80 line-clamp-1 mt-1">${escapeHtml(hit.overview || 'No synopsis available.')}</p>
+                  <p class="text-xs text-inkSoft line-clamp-1 mt-0.5">${escapeHtml(hit.overview || 'No synopsis available.')}</p>
                 </div>
-                ${!alreadyAdded ? `<span class="text-xs font-semibold text-cinema-rose shrink-0 pr-1">+ Add</span>` : ''}
+                ${!exists ? '<span class="font-mono text-xs font-bold text-coral shrink-0 pr-1">Select →</span>' : ''}
               </button>
             `;
           }).join('');
 
-          box.querySelectorAll('[data-hit-idx]').forEach((btn) => {
+          resultsBox.querySelectorAll('[data-hit]').forEach((btn) => {
             btn.addEventListener('click', async () => {
-              const hit = hits[Number(btn.dataset.hitIdx)];
+              const hit = hits[Number(btn.dataset.hit)];
               btn.disabled = true;
-              const addTag = btn.querySelector('span:last-child');
-              if (addTag) addTag.textContent = 'Adding...';
               try {
+                previewBox.classList.remove('hidden');
+                previewBox.innerHTML = '<p class="text-xs font-mono text-center py-4">✿ Fetching full film details...</p>';
                 const details = await fetchTmdbDetails(hit.id, hit.media_type);
-                const newMovie = normalizeMovie({
-                  id: `tmdb-${details.mediaType}-${details.tmdbId}`,
-                  ...details,
-                  addedAt: Date.now()
-                });
-                movies.unshift(newMovie);
-                saveMovies();
-                showToast(`Added "${newMovie.title}" to your shelf!`, 'success');
-                closeModal();
+
+                previewBox.innerHTML = `
+                  <div class="flex flex-col sm:flex-row gap-4">
+                    ${details.poster
+                      ? `<img src="${escapeHtml(details.poster)}" alt="" class="w-24 aspect-[2/3] object-cover rounded-xl border-2 border-ink shrink-0 self-start" />`
+                      : ''
+                    }
+                    <div class="flex-1 min-w-0">
+                      <div class="flex items-start justify-between gap-2">
+                        <h3 class="font-serif font-bold text-lg text-ink leading-tight">${escapeHtml(details.title)}</h3>
+                        <button id="btnCancelPreview" class="text-xs font-mono text-inkSoft hover:text-ink cursor-pointer">✕</button>
+                      </div>
+                      <p class="font-mono text-[11px] text-inkSoft mt-0.5">
+                        ${escapeHtml(details.year || '—')} ${details.runtime ? `· ${escapeHtml(details.runtime)}` : ''} ${details.tmdbRating ? `· ★ ${details.tmdbRating}` : ''}
+                      </p>
+                      <div class="flex flex-wrap gap-1 my-2">
+                        ${details.genres.map((g) => `<span class="text-[10px] px-2 py-0.5 rounded-lg bg-cream border border-ink font-medium">${escapeHtml(g)}</span>`).join('')}
+                      </div>
+                      <p class="text-xs text-inkSoft line-clamp-2 mb-3">${escapeHtml(details.overview || 'No synopsis.')}</p>
+
+                      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                        <select id="previewMoodSelect" class="retro-input flex-1 rounded-xl px-3 py-2 text-xs cursor-pointer">
+                          <option value="">Date-night mood (optional)</option>
+                          ${moodSelectOptions()}
+                        </select>
+                        <button id="btnConfirmAddTmdb" class="retro-btn px-4 py-2 rounded-xl bg-pistachio text-ink font-semibold text-xs sm:text-sm cursor-pointer shrink-0">
+                          ＋ Add to Shelf
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                `;
+
+                $('btnCancelPreview').onclick = () => {
+                  previewBox.classList.add('hidden');
+                  btn.disabled = false;
+                };
+
+                $('btnConfirmAddTmdb').onclick = () => {
+                  const chosenMood = $('previewMoodSelect').value;
+                  const newMovie = normalizeMovie({
+                    id: `tmdb-${details.mediaType}-${details.tmdbId}`,
+                    ...details,
+                    mood: chosenMood,
+                    addedAt: Date.now()
+                  });
+                  movies.unshift(newMovie);
+                  saveMovies();
+                  showToast(`Added "${newMovie.title}" to your shelf! ✿`, 'success');
+                  closeModal();
+                };
               } catch (err) {
-                showToast(err.message, 'error');
+                previewBox.classList.add('hidden');
                 btn.disabled = false;
-                if (addTag) addTag.textContent = '+ Add';
+                showToast(err.message, 'error');
               }
             });
           });
         } catch (err) {
-          box.innerHTML = `<p class="text-xs text-rose-300 text-center py-6">${escapeHtml(err.message)}</p>`;
+          resultsBox.innerHTML = `<p class="text-xs text-coral font-semibold text-center py-6">${escapeHtml(err.message)}</p>`;
         }
       };
 
-      $('btnRunTmdbSearch').onclick = runSearch;
+      $('btnRunSearch').onclick = runSearch;
       input.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
           e.preventDefault();
@@ -1175,13 +1405,13 @@
       });
       input.addEventListener('input', () => {
         clearTimeout(searchDebounceTimer);
-        if (input.value.trim().length >= 2 && detectTmdbAuthType(settings.tmdbKey)) {
+        if (input.value.trim().length >= 2 && detectTmdbAuth(settings.tmdbKey)) {
           searchDebounceTimer = setTimeout(runSearch, 420);
         }
       });
 
-      // Manual Submit
-      $('panelManual').addEventListener('submit', (e) => {
+      // Manual Entry Submit
+      $('panelAddManual').addEventListener('submit', (e) => {
         e.preventDefault();
         const title = $('manTitle').value.trim();
         if (!title) return;
@@ -1191,20 +1421,21 @@
           title,
           year: $('manYear').value.trim(),
           genres: genres.length ? genres : ['Drama'],
+          mood: $('manMood').value,
           overview: $('manOverview').value.trim(),
           addedAt: Date.now()
         });
         movies.unshift(newMovie);
         saveMovies();
-        showToast(`Added "${newMovie.title}" manually.`, 'success');
+        showToast(`Added "${newMovie.title}" manually! ✿`, 'success');
         closeModal();
       });
 
-      setTimeout(() => (hasApi ? input.focus() : $('manTitle').focus()), 50);
+      setTimeout(() => (hasApi ? input.focus() : $('manTitle').focus()), 60);
     }
 
     /* =========================================================================
-       MOVIE DETAIL MODAL (Backdrop, Ratings, Notes, Watched Toggle, Delete)
+       COUPLE DETAIL MODAL
        ========================================================================= */
 
     function openDetailModal(movieId) {
@@ -1212,138 +1443,133 @@
       if (!movie) return;
 
       const p1 = settings.partner1Name || 'Mahi';
-      const p2 = settings.partner2Name || 'Me';
+      const p2 = settings.partner2Name || 'You';
       const r1 = movie.rating1 || 0;
       const r2 = movie.rating2 || 0;
 
       openModal(`
-        <div class="relative">
-          <!-- Backdrop Banner -->
-          <div class="relative h-44 sm:h-52 w-full bg-cinema-elevated overflow-hidden">
+        <div class="max-h-[90vh] overflow-y-auto">
+          <!-- Retro Backdrop Strip -->
+          <div class="relative h-40 sm:h-48 w-full border-b-2 border-ink bg-lavender/40 overflow-hidden">
             ${movie.backdrop
-              ? `<img src="${escapeHtml(movie.backdrop)}" alt="" class="w-full h-full object-cover opacity-60" />`
-              : `<div class="w-full h-full bg-gradient-to-br from-[#2b1e29] via-[#181b25] to-[#111319]"></div>`
+              ? `<img src="${escapeHtml(movie.backdrop)}" alt="" class="w-full h-full object-cover opacity-85" />`
+              : `<div class="w-full h-full" style="background: repeating-linear-gradient(45deg, #ffe18455, #ffe18455 18px, #ff9ebb44 18px, #ff9ebb44 36px);"></div>`
             }
-            <div class="absolute inset-0 bg-gradient-to-t from-cinema-surface via-cinema-surface/50 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-cream via-cream/25 to-transparent"></div>
 
-            <!-- Close Button -->
-            <button onclick="closeModal()" class="absolute top-3.5 right-3.5 p-2 rounded-full bg-black/55 backdrop-blur-sm text-white/80 hover:text-white hover:bg-black/80 transition cursor-pointer" aria-label="Close">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-            </button>
+            <button onclick="closeModal()" class="retro-btn absolute top-3.5 right-3.5 w-9 h-9 rounded-xl bg-cream text-ink font-bold flex items-center justify-center cursor-pointer" aria-label="Close">✕</button>
           </div>
 
-          <!-- Content Body -->
-          <div class="px-5 sm:px-7 pb-6 -mt-20 relative z-10">
+          <div class="px-5 sm:px-7 pb-6 -mt-16 relative z-10">
             <div class="flex flex-col sm:flex-row gap-5">
-              <!-- Poster Thumbnail -->
-              <div class="w-28 sm:w-32 aspect-[2/3] rounded-xl overflow-hidden border-2 border-cinema-surface shadow-2xl bg-cinema-elevated shrink-0">
+              <!-- Poster -->
+              <div class="w-28 sm:w-32 aspect-[2/3] rounded-2xl overflow-hidden retro-box-sm bg-paper shrink-0">
                 ${movie.poster
                   ? `<img src="${escapeHtml(movie.poster)}" alt="${escapeHtml(movie.title)}" class="w-full h-full object-cover" />`
-                  : `<div class="w-full h-full flex items-center justify-center p-3 text-center font-serif text-sm text-cinema-muted bg-cinema-bg">${escapeHtml(movie.title)}</div>`
+                  : `<div class="w-full h-full flex flex-col items-center justify-center p-3 text-center font-serif font-bold text-sm text-ink bg-buttercup/40">✿<br>${escapeHtml(movie.title)}</div>`
                 }
               </div>
 
-              <!-- Title & Meta -->
-              <div class="flex-1 pt-1 sm:pt-12">
-                <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-white leading-tight">${escapeHtml(movie.title)}</h2>
-                <div class="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-cinema-muted mt-2">
+              <!-- Title, Meta & Genres -->
+              <div class="flex-1 pt-1 sm:pt-10">
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-ink leading-tight">${escapeHtml(movie.title)}</h2>
+                <div class="font-mono text-xs text-inkSoft flex flex-wrap items-center gap-2 mt-1.5">
                   ${movie.year ? `<span>${escapeHtml(movie.year)}</span>` : ''}
                   ${movie.runtime ? `<span>·</span><span>${escapeHtml(movie.runtime)}</span>` : ''}
-                  ${movie.mediaType === 'tv' ? '<span>·</span><span class="uppercase text-[11px] tracking-wider text-cinema-amber">TV Series</span>' : ''}
-                  ${movie.tmdbRating ? `<span>·</span><span class="text-cinema-amber font-semibold">★ ${movie.tmdbRating.toFixed(1)} TMDB</span>` : ''}
+                  ${movie.mediaType === 'tv' ? '<span>·</span><span class="px-1.5 py-0.5 rounded bg-lavender border border-ink text-ink text-[10px]">TV</span>' : ''}
+                  ${movie.tmdbRating ? `<span>·</span><span class="px-2 py-0.5 rounded-full bg-buttercup border border-ink text-ink font-bold">★ ${movie.tmdbRating.toFixed(1)} TMDB</span>` : ''}
                 </div>
 
-                <!-- Genre Chips -->
                 <div class="flex flex-wrap gap-1.5 mt-3">
-                  ${(movie.genres || []).map((g) => `<span class="text-xs px-2.5 py-0.5 rounded-full bg-cinema-elevated border border-cinema-border text-cinema-muted">${escapeHtml(g)}</span>`).join('')}
+                  ${(movie.genres || []).map((g) => `<span class="text-xs px-2.5 py-0.5 rounded-full bg-paper border-2 border-ink font-medium text-ink">${escapeHtml(g)}</span>`).join('')}
                 </div>
               </div>
             </div>
 
             <!-- Synopsis -->
-            <p class="text-sm text-gray-300 leading-relaxed mt-5">
+            <p class="text-sm text-ink/90 leading-relaxed mt-5 bg-paper border-2 border-ink/20 rounded-2xl p-3.5">
               ${escapeHtml(movie.overview || 'No synopsis added yet.')}
             </p>
 
-            <!-- Watched Toggle Switch -->
-            <div class="mt-6 p-3.5 rounded-xl bg-cinema-bg border border-cinema-border flex items-center justify-between gap-4">
-              <div>
-                <p class="text-sm font-medium text-white">Watched Together</p>
-                <p class="text-xs text-cinema-muted">Mark this film as completed on your shelf</p>
+            <!-- Editable Date-Night Mood + Watched Together Toggle -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mt-4">
+              <div class="p-3.5 rounded-2xl bg-paper border-2 border-ink">
+                <label for="detailMood" class="block font-mono text-[11px] uppercase font-bold text-inkSoft mb-1.5">Date-Night Mood</label>
+                <select id="detailMood" class="retro-input w-full rounded-xl px-3 py-2 text-sm cursor-pointer">
+                  <option value="">Not set</option>
+                  ${moodSelectOptions(movie.mood)}
+                </select>
               </div>
-              <label class="relative inline-flex items-center cursor-pointer">
-                <input id="detailWatched" type="checkbox" class="sr-only peer" ${movie.watched ? 'checked' : ''} />
-                <div class="w-11 h-6 bg-cinema-elevated border border-cinema-border rounded-full peer peer-checked:bg-emerald-500/80 peer-checked:border-emerald-400 after:content-[''] after:absolute after:top-[3px] after:left-[3px] after:bg-white after:rounded-full after:h-[18px] after:w-[18px] after:transition-all peer-checked:after:translate-x-5"></div>
+
+              <label class="p-3.5 rounded-2xl bg-pistachio/55 border-2 border-ink flex items-center justify-between gap-3 cursor-pointer">
+                <div>
+                  <span class="block font-serif font-bold text-base text-ink">Watched Together ♡</span>
+                  <span class="text-xs text-inkSoft">Stamp this ticket complete!</span>
+                </div>
+                <input id="detailWatched" type="checkbox" ${movie.watched ? 'checked' : ''}
+                  class="w-6 h-6 accent-[#ff6f91] border-2 border-ink rounded cursor-pointer" />
               </label>
             </div>
 
             <!-- Couple Individual Ratings -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-              <div class="p-3.5 rounded-xl bg-cinema-bg border border-cinema-border">
-                <div class="flex items-center justify-between text-xs mb-2.5">
-                  <span class="font-medium text-cinema-rose">♥ ${escapeHtml(p1)}'s Rating</span>
-                  <span id="valRating1" class="font-mono font-semibold text-white">${r1 > 0 ? `${r1.toFixed(1)} / 10` : 'Unrated'}</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mt-4">
+              <div class="p-3.5 rounded-2xl bg-strawberry/30 border-2 border-ink">
+                <div class="flex items-center justify-between text-xs font-bold mb-2.5">
+                  <span class="text-ink">♡ ${escapeHtml(p1)}'s Rating</span>
+                  <span id="valRating1" class="font-mono px-2 py-0.5 rounded-full bg-cream border border-ink text-ink">${r1 > 0 ? `${r1.toFixed(1)}/10` : '—'}</span>
                 </div>
-                <input id="inputRating1" type="range" min="0" max="10" step="0.5" value="${r1}" class="w-full cinema-range" />
+                <input id="inputRating1" type="range" min="0" max="10" step="0.5" value="${r1}" class="w-full retro-range" />
               </div>
 
-              <div class="p-3.5 rounded-xl bg-cinema-bg border border-cinema-border">
-                <div class="flex items-center justify-between text-xs mb-2.5">
-                  <span class="font-medium text-cinema-amber">♥ ${escapeHtml(p2)}'s Rating</span>
-                  <span id="valRating2" class="font-mono font-semibold text-white">${r2 > 0 ? `${r2.toFixed(1)} / 10` : 'Unrated'}</span>
+              <div class="p-3.5 rounded-2xl bg-buttercup/40 border-2 border-ink">
+                <div class="flex items-center justify-between text-xs font-bold mb-2.5">
+                  <span class="text-ink">♡ ${escapeHtml(p2)}'s Rating</span>
+                  <span id="valRating2" class="font-mono px-2 py-0.5 rounded-full bg-cream border border-ink text-ink">${r2 > 0 ? `${r2.toFixed(1)}/10` : '—'}</span>
                 </div>
-                <input id="inputRating2" type="range" min="0" max="10" step="0.5" value="${r2}" class="w-full cinema-range" />
+                <input id="inputRating2" type="range" min="0" max="10" step="0.5" value="${r2}" class="w-full retro-range" />
               </div>
             </div>
 
-            <!-- Shared Couple Note -->
+            <!-- Shared Memory / Note -->
             <div class="mt-4">
-              <label for="detailNote" class="block text-xs font-medium text-cinema-muted mb-1.5">Our Shared Note / Memory</label>
-              <textarea id="detailNote" rows="2" placeholder="Where we watched it, favorite quote, or date-night memory..."
-                class="w-full bg-cinema-bg border border-cinema-border rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-cinema-muted/60 focus:outline-none focus:border-cinema-rose resize-none">${escapeHtml(movie.note || '')}</textarea>
+              <label for="detailNote" class="block text-xs font-bold text-ink mb-1.5">✎ Our Date-Night Memory / Note</label>
+              <textarea id="detailNote" rows="2" placeholder="Snacks we ate, favorite scene, or a tiny memory..."
+                class="retro-input w-full rounded-2xl px-3.5 py-2.5 text-sm resize-none">${escapeHtml(movie.note || '')}</textarea>
             </div>
 
-            <!-- Modal Footer Actions -->
-            <div class="flex flex-wrap items-center justify-between gap-3 mt-6 pt-4 border-t border-cinema-border">
-              <div class="flex items-center gap-2">
-                <button id="btnDeleteMovie"
-                  class="px-3.5 py-2 rounded-xl border border-rose-500/30 text-rose-400 hover:bg-rose-500/10 text-xs sm:text-sm font-medium transition cursor-pointer">
-                  Delete
+            <!-- Footer Actions -->
+            <div class="flex flex-wrap items-center justify-between gap-3 mt-6 pt-4 border-t-2 border-dashed border-ink/25">
+              <div class="flex flex-wrap items-center gap-2">
+                <button id="btnDeleteMovie" class="retro-btn px-3.5 py-2 rounded-xl bg-paper text-coral text-xs sm:text-sm font-semibold cursor-pointer">
+                  Remove
                 </button>
-                ${detectTmdbAuthType(settings.tmdbKey) ? `
-                  <button id="btnRefreshSingle"
-                    class="px-3 py-2 rounded-xl border border-cinema-border text-cinema-muted hover:text-white hover:bg-cinema-elevated text-xs sm:text-sm transition cursor-pointer"
-                    title="Re-fetch poster &amp; metadata from TMDB">
-                    Refresh TMDB
+                ${detectTmdbAuth(settings.tmdbKey) ? `
+                  <button id="btnRefreshSingle" class="retro-btn px-3.5 py-2 rounded-xl bg-lavender/70 text-ink text-xs sm:text-sm font-semibold cursor-pointer">
+                    ↻ Refresh TMDB
                   </button>
                 ` : ''}
               </div>
 
               <div class="flex items-center gap-2">
-                <button onclick="closeModal()" class="px-4 py-2 rounded-xl bg-cinema-elevated text-sm text-cinema-muted hover:text-white transition cursor-pointer">
-                  Cancel
-                </button>
-                <button id="btnSaveDetail" class="px-5 py-2 rounded-xl bg-gradient-to-r from-cinema-rose to-cinema-amber text-[#121014] font-semibold text-sm hover:brightness-110 transition cursor-pointer">
-                  Save Changes
-                </button>
+                <button onclick="closeModal()" class="retro-btn px-4 py-2 rounded-xl bg-paper text-ink text-sm font-semibold cursor-pointer">Cancel</button>
+                <button id="btnSaveDetail" class="retro-btn px-5 py-2 rounded-xl bg-coral text-cream text-sm font-semibold cursor-pointer">Save ♡</button>
               </div>
             </div>
           </div>
         </div>
       `);
 
-      // Live slider value labels
       $('inputRating1').addEventListener('input', (e) => {
         const v = Number(e.target.value);
-        $('valRating1').textContent = v > 0 ? `${v.toFixed(1)} / 10` : 'Unrated';
+        $('valRating1').textContent = v > 0 ? `${v.toFixed(1)}/10` : '—';
       });
       $('inputRating2').addEventListener('input', (e) => {
         const v = Number(e.target.value);
-        $('valRating2').textContent = v > 0 ? `${v.toFixed(1)} / 10` : 'Unrated';
+        $('valRating2').textContent = v > 0 ? `${v.toFixed(1)}/10` : '—';
       });
 
-      // Save Changes
-      $('btnSaveDetail').addEventListener('click', () => {
+      $('btnSaveDetail').onclick = () => {
+        movie.mood = $('detailMood').value;
         movie.watched = $('detailWatched').checked;
         const v1 = Number($('inputRating1').value);
         const v2 = Number($('inputRating2').value);
@@ -1351,248 +1577,314 @@
         movie.rating2 = v2 > 0 ? v2 : null;
         movie.note = $('detailNote').value.trim();
         saveMovies();
-        showToast(`Saved "${movie.title}"`, 'success');
+        showToast(`Saved memories for "${movie.title}" ♡`, 'success');
         closeModal();
-      });
+      };
 
-      // Two-step inline Delete confirmation (no native confirm())
-      let confirmDeleteArmed = false;
-      $('btnDeleteMovie').addEventListener('click', (e) => {
+      // Inline 2-step delete confirmation (no native confirm())
+      let armed = false;
+      $('btnDeleteMovie').onclick = (e) => {
         const btn = e.currentTarget;
-        if (!confirmDeleteArmed) {
-          confirmDeleteArmed = true;
-          btn.textContent = 'Confirm Delete?';
-          btn.classList.add('bg-rose-500/20', 'border-rose-500');
+        if (!armed) {
+          armed = true;
+          btn.textContent = 'Click again to remove!';
+          btn.classList.remove('bg-paper', 'text-coral');
+          btn.classList.add('bg-coral', 'text-cream');
           setTimeout(() => {
-            if (confirmDeleteArmed) {
-              confirmDeleteArmed = false;
-              btn.textContent = 'Delete';
-              btn.classList.remove('bg-rose-500/20', 'border-rose-500');
+            if (armed) {
+              armed = false;
+              btn.textContent = 'Remove';
+              btn.classList.add('bg-paper', 'text-coral');
+              btn.classList.remove('bg-coral', 'text-cream');
             }
-          }, 4000);
+          }, 3800);
           return;
         }
         movies = movies.filter((m) => m.id !== movie.id);
         saveMovies();
         showToast(`Removed "${movie.title}" from the shelf.`, 'info');
         closeModal();
-      });
+      };
 
-      // Optional single-item TMDB refresh
       const refreshBtn = $('btnRefreshSingle');
       if (refreshBtn) {
-        refreshBtn.addEventListener('click', async () => {
+        refreshBtn.onclick = async () => {
           refreshBtn.disabled = true;
-          refreshBtn.textContent = 'Refreshing...';
+          refreshBtn.textContent = '↻ Syncing...';
           try {
             let tmdbId = movie.tmdbId;
             let mediaType = movie.mediaType || 'movie';
             if (!tmdbId) {
               const s = await tmdbFetch('/search/multi', { query: movie.title, include_adult: 'false' });
               const hit = (s.results || []).find((r) => r.media_type === 'movie' || r.media_type === 'tv');
-              if (!hit) throw new Error('No matching title found on TMDB.');
+              if (!hit) throw new Error('No match found on TMDB.');
               tmdbId = hit.id;
               mediaType = hit.media_type;
             }
             const details = await fetchTmdbDetails(tmdbId, mediaType);
             Object.assign(movie, details);
             saveMovies();
-            showToast(`Updated metadata for "${movie.title}"!`, 'success');
+            showToast(`Refreshed "${movie.title}" from TMDB! ✿`, 'success');
             openDetailModal(movie.id);
           } catch (err) {
             showToast(err.message, 'error');
             refreshBtn.disabled = false;
-            refreshBtn.textContent = 'Refresh TMDB';
+            refreshBtn.textContent = '↻ Refresh TMDB';
           }
-        });
+        };
       }
     }
 
     /* =========================================================================
-       PICK FOR TONIGHT SPOTLIGHT MODAL
+       WHIMSICAL "PICK FOR TONIGHT" RETRO REEL / SLOT REVEAL MODAL
        ========================================================================= */
 
     function pickForTonight() {
       let pool = getFilteredMovies().filter((m) => !m.watched);
+      let usedFallbackPool = false;
+
       if (!pool.length) {
         pool = movies.filter((m) => !m.watched);
-        if (!pool.length) {
-          showToast('You have watched every single movie on the shelf! Time to add more.', 'info');
-          return;
-        }
-        showToast('No unwatched movies in current filter — picking from your full watchlist.', 'info');
+        usedFallbackPool = true;
       }
 
-      const chosen = pool[Math.floor(Math.random() * pool.length)];
+      if (!pool.length) {
+        showToast('You have watched every movie on the shelf! Time to add more ✿', 'info');
+        return;
+      }
+
+      const winner = pool[Math.floor(Math.random() * pool.length)];
 
       openModal(`
-        <div class="p-6 text-center">
-          <div class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-cinema-amber mb-2">
-            ✦ Tonight's Feature ✦
-          </div>
-          <h2 class="font-serif text-3xl font-semibold text-white mb-5">${escapeHtml(chosen.title)}</h2>
+        <div class="p-6 text-center bg-cream relative">
+          <button onclick="closeModal()" class="retro-btn absolute top-4 right-4 w-8 h-8 rounded-xl bg-paper text-ink font-bold flex items-center justify-center cursor-pointer" aria-label="Close">✕</button>
 
-          <div class="w-44 aspect-[2/3] mx-auto rounded-2xl overflow-hidden border border-cinema-border shadow-2xl bg-cinema-elevated mb-5">
-            ${chosen.poster
-              ? `<img src="${escapeHtml(chosen.poster)}" alt="${escapeHtml(chosen.title)}" class="w-full h-full object-cover" />`
-              : `<div class="w-full h-full flex items-center justify-center p-4 font-serif text-lg text-cinema-muted">${escapeHtml(chosen.title)}</div>`
-            }
+          <div class="inline-block font-mono text-[11px] font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-buttercup border-2 border-ink mb-3">
+            ★ Tonight's Feature Ticket ★
           </div>
 
-          <div class="flex items-center justify-center gap-2 text-xs text-cinema-muted mb-3">
-            ${chosen.year ? `<span>${escapeHtml(chosen.year)}</span>` : ''}
-            ${chosen.runtime ? `<span>·</span><span>${escapeHtml(chosen.runtime)}</span>` : ''}
-            ${chosen.tmdbRating ? `<span>·</span><span class="text-cinema-amber font-semibold">★ ${chosen.tmdbRating.toFixed(1)}</span>` : ''}
+          <h2 id="slotTitle" class="font-serif text-2xl sm:text-3xl font-bold text-ink min-h-[2.4rem] mb-4">Spinning the reel...</h2>
+
+          <div id="slotFrame" class="w-44 aspect-[2/3] mx-auto rounded-2xl overflow-hidden retro-box bg-paper mb-4 flex items-center justify-center animate-slot">
+            <span class="text-4xl">🎞️</span>
           </div>
 
-          <div class="flex flex-wrap justify-center gap-1.5 mb-4">
-            ${(chosen.genres || []).slice(0, 4).map((g) => `<span class="text-xs px-2.5 py-0.5 rounded-full bg-cinema-elevated border border-cinema-border text-cinema-muted">${escapeHtml(g)}</span>`).join('')}
-          </div>
-
-          <p class="text-sm text-gray-300 leading-relaxed max-w-md mx-auto mb-6 line-clamp-3">
-            ${escapeHtml(chosen.overview || 'No synopsis available.')}
+          <div id="slotMeta" class="font-mono text-xs text-inkSoft min-h-[1.25rem] mb-2"></div>
+          <p id="slotOverview" class="text-xs sm:text-sm text-inkSoft max-w-md mx-auto line-clamp-3 min-h-[3.5rem] mb-5">
+            ${usedFallbackPool ? 'Picking from your full unwatched watchlist...' : 'Picking from your current filtered shelf...'}
           </p>
 
-          <div class="flex flex-wrap items-center justify-center gap-2.5">
-            <button id="btnRollAgain" class="px-4 py-2.5 rounded-xl bg-cinema-elevated border border-cinema-border text-sm text-white hover:border-cinema-amber/60 transition cursor-pointer">
-              Roll Again
+          <div id="slotActions" class="flex flex-wrap items-center justify-center gap-2.5 opacity-40 pointer-events-none transition-opacity duration-200">
+            <button id="btnSpinAgain" class="retro-btn px-4 py-2.5 rounded-2xl bg-buttercup text-ink font-semibold text-sm cursor-pointer">
+              ↻ Spin Again
             </button>
-            <button id="btnSpotlightDetails" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cinema-rose to-cinema-amber text-[#121014] font-semibold text-sm hover:brightness-110 transition cursor-pointer">
-              View Details
+            <button id="btnSlotDetails" class="retro-btn px-5 py-2.5 rounded-2xl bg-coral text-cream font-semibold text-sm cursor-pointer">
+              Open Details ♡
             </button>
           </div>
         </div>
       `, 'max-w-lg');
 
-      $('btnRollAgain').onclick = pickForTonight;
-      $('btnSpotlightDetails').onclick = () => openDetailModal(chosen.id);
+      // Playful retro slot-reel spin animation (~950ms)
+      let ticks = 0;
+      const totalTicks = 11;
+      const interval = setInterval(() => {
+        ticks++;
+        const sample = pool[Math.floor(Math.random() * pool.length)];
+        const titleEl = $('slotTitle');
+        const frameEl = $('slotFrame');
+        if (!titleEl || !frameEl) {
+          clearInterval(interval);
+          return;
+        }
+
+        if (ticks < totalTicks) {
+          titleEl.textContent = sample.title;
+          frameEl.innerHTML = sample.poster
+            ? `<img src="${escapeHtml(sample.poster)}" alt="" class="w-full h-full object-cover opacity-80" />`
+            : `<div class="p-4 font-serif font-bold text-base text-ink">${escapeHtml(sample.title)}</div>`;
+        } else {
+          clearInterval(interval);
+          frameEl.classList.remove('animate-slot');
+          titleEl.textContent = `✿ ${winner.title} ✿`;
+          frameEl.innerHTML = winner.poster
+            ? `<img src="${escapeHtml(winner.poster)}" alt="${escapeHtml(winner.title)}" class="w-full h-full object-cover" />`
+            : `<div class="w-full h-full flex flex-col items-center justify-center p-4 bg-strawberry/30 font-serif font-bold text-lg text-ink">✿<br>${escapeHtml(winner.title)}</div>`;
+
+          $('slotMeta').innerHTML = [
+            winner.year || '',
+            winner.runtime || '',
+            winner.mood ? `<span class="px-2 py-0.5 rounded-full bg-pistachio border border-ink text-ink">${escapeHtml(winner.mood)}</span>` : '',
+            winner.tmdbRating ? `<span class="text-coral font-bold">★ ${winner.tmdbRating.toFixed(1)}</span>` : ''
+          ].filter(Boolean).join(' · ');
+
+          $('slotOverview').textContent = winner.overview || 'Grab some popcorn and press play!';
+
+          const actions = $('slotActions');
+          actions.classList.remove('opacity-40', 'pointer-events-none');
+          $('btnSpinAgain').onclick = pickForTonight;
+          $('btnSlotDetails').onclick = () => openDetailModal(winner.id);
+        }
+      }, 85);
     }
 
     /* =========================================================================
-       SETTINGS MODAL (TMDB Auth, Partner Names, GitHub Sync, Export/Import)
+       SETTINGS MODAL (General & TMDB | GitHub Sync | Backup / JSON)
        ========================================================================= */
 
-    function openSettingsModal() {
-      const auth = detectTmdbAuthType(settings.tmdbKey);
+    function openSettingsModal(initialTab = 'general') {
+      const auth = detectTmdbAuth(settings.tmdbKey);
       const authBadge = auth
-        ? `<span class="text-[11px] px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">Detected: TMDB ${auth.type.toUpperCase()}</span>`
-        : `<span class="text-[11px] px-2 py-0.5 rounded-full bg-cinema-elevated text-cinema-muted border border-cinema-border">Not configured</span>`;
+        ? `<span class="font-mono text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-pistachio border border-ink">Detected: TMDB ${auth.type.toUpperCase()}</span>`
+        : `<span class="font-mono text-[10px] px-2.5 py-0.5 rounded-full bg-paper border border-ink text-inkSoft">Not set</span>`;
 
       openModal(`
-        <div class="p-5 sm:p-6 max-h-[88vh] overflow-y-auto">
-          <div class="flex items-center justify-between pb-4 border-b border-cinema-border">
+        <div class="p-5 sm:p-6 max-h-[90vh] overflow-y-auto">
+          <div class="flex items-center justify-between pb-4 border-b-2 border-dashed border-ink/25">
             <div>
-              <h2 class="font-serif text-2xl font-semibold text-white">Settings &amp; Sync</h2>
-              <p class="text-xs text-cinema-muted mt-0.5">Keys &amp; tokens are stored strictly in this browser's localStorage.</p>
+              <h2 class="font-serif text-2xl sm:text-3xl font-bold text-ink">Settings &amp; Sync ⚙</h2>
+              <p class="text-xs text-inkSoft mt-0.5">Keys &amp; tokens stay strictly in your browser's localStorage.</p>
             </div>
-            <button onclick="closeModal()" class="p-2 rounded-xl text-cinema-muted hover:text-white hover:bg-cinema-elevated transition cursor-pointer" aria-label="Close">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-            </button>
+            <button onclick="closeModal()" class="retro-btn w-9 h-9 rounded-xl bg-paper text-ink font-bold flex items-center justify-center cursor-pointer" aria-label="Close">✕</button>
           </div>
 
-          <div class="space-y-6 mt-5">
-            <!-- 1. TMDB Integration -->
-            <section>
-              <div class="flex items-center justify-between mb-2">
-                <h3 class="text-sm font-semibold text-white">TMDB API Authentication</h3>
+          <!-- Settings Tabs -->
+          <div class="grid grid-cols-3 gap-1.5 mt-4 p-1.5 rounded-2xl bg-paper border-2 border-ink">
+            <button data-stab="general" class="settings-tab py-2 rounded-xl text-xs font-semibold cursor-pointer">★ TMDB &amp; Names</button>
+            <button data-stab="github" class="settings-tab py-2 rounded-xl text-xs font-semibold cursor-pointer">↑ GitHub Sync</button>
+            <button data-stab="backup" class="settings-tab py-2 rounded-xl text-xs font-semibold cursor-pointer">✿ Export / JSON</button>
+          </div>
+
+          <!-- TAB 1: TMDB & PARTNER NAMES -->
+          <div id="stab-general" class="settings-panel mt-5 space-y-5">
+            <div class="p-4 rounded-2xl bg-paper border-2 border-ink">
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <h3 class="font-serif font-bold text-base text-ink">TMDB API Key or Read Access Token</h3>
                 ${authBadge}
               </div>
-              <p class="text-xs text-cinema-muted mb-2.5">
+              <p class="text-xs text-inkSoft mb-3">
                 Paste <b>either</b> your 32-char v3 API Key <b>or</b> your v4 Read Access Token from
-                <a href="https://www.themoviedb.org/settings/api" target="_blank" rel="noreferrer" class="text-cinema-amber hover:underline">TMDB API Settings</a>.
+                <a href="https://www.themoviedb.org/settings/api" target="_blank" rel="noreferrer" class="font-semibold text-coral underline">TMDB API Settings</a>.
+                We auto-detect which one you pasted!
               </p>
-              <input id="setTmdbKey" type="password" value="${escapeHtml(settings.tmdbKey)}" placeholder="Paste v3 API key or v4 Read Access Token..."
-                class="w-full bg-cinema-bg border border-cinema-border rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-cinema-rose" />
-            </section>
+              <div class="flex flex-col sm:flex-row gap-2">
+                <input id="setTmdbKey" type="password" value="${escapeHtml(settings.tmdbKey)}" placeholder="Paste v3 key or v4 token..."
+                  class="retro-input flex-1 rounded-xl px-3.5 py-2 text-sm" />
+                <button id="btnTestTmdb" class="retro-btn px-4 py-2 rounded-xl bg-buttercup text-ink font-semibold text-xs sm:text-sm cursor-pointer shrink-0">
+                  Test Connection
+                </button>
+              </div>
+              <p id="tmdbTestFeedback" class="text-xs font-semibold mt-2 hidden"></p>
+            </div>
 
-            <!-- 2. Partner Names -->
-            <section class="pt-4 border-t border-cinema-border/70">
-              <h3 class="text-sm font-semibold text-white mb-2.5">Partner Names (for Ratings)</h3>
+            <div class="p-4 rounded-2xl bg-paper border-2 border-ink">
+              <h3 class="font-serif font-bold text-base text-ink mb-2.5">Couple Names (for Ratings ♡)</h3>
               <div class="grid grid-cols-2 gap-3">
                 <div>
-                  <label class="block text-xs text-cinema-muted mb-1">Person 1</label>
-                  <input id="setPartner1" type="text" value="${escapeHtml(settings.partner1Name)}" placeholder="Mahi"
-                    class="w-full bg-cinema-bg border border-cinema-border rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-cinema-rose" />
+                  <label class="block text-xs font-semibold text-inkSoft mb-1">Partner 1</label>
+                  <input id="setP1" type="text" value="${escapeHtml(settings.partner1Name)}" placeholder="Mahi" class="retro-input w-full rounded-xl px-3 py-2 text-sm" />
                 </div>
                 <div>
-                  <label class="block text-xs text-cinema-muted mb-1">Person 2</label>
-                  <input id="setPartner2" type="text" value="${escapeHtml(settings.partner2Name)}" placeholder="Me"
-                    class="w-full bg-cinema-bg border border-cinema-border rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-cinema-rose" />
+                  <label class="block text-xs font-semibold text-inkSoft mb-1">Partner 2</label>
+                  <input id="setP2" type="text" value="${escapeHtml(settings.partner2Name)}" placeholder="You" class="retro-input w-full rounded-xl px-3 py-2 text-sm" />
                 </div>
               </div>
-            </section>
-
-            <!-- 3. GitHub Pages Zero-Database Sync -->
-            <section class="pt-4 border-t border-cinema-border/70">
-              <h3 class="text-sm font-semibold text-white mb-1">GitHub Sync (Optional)</h3>
-              <p class="text-xs text-cinema-muted mb-3">
-                Commit <code class="text-cinema-amber">movies.json</code> directly to your GitHub repo so both of you share one live shelf on GitHub Pages.
-              </p>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div class="sm:col-span-2">
-                  <label class="block text-xs text-cinema-muted mb-1">Repository (owner/repo)</label>
-                  <input id="setGhRepo" type="text" value="${escapeHtml(settings.ghRepo)}" placeholder="username/our-movie-shelf"
-                    class="w-full bg-cinema-bg border border-cinema-border rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-cinema-rose" />
-                </div>
-                <div>
-                  <label class="block text-xs text-cinema-muted mb-1">Branch</label>
-                  <input id="setGhBranch" type="text" value="${escapeHtml(settings.ghBranch)}" placeholder="main"
-                    class="w-full bg-cinema-bg border border-cinema-border rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-cinema-rose" />
-                </div>
-                <div>
-                  <label class="block text-xs text-cinema-muted mb-1">File Path</label>
-                  <input id="setGhPath" type="text" value="${escapeHtml(settings.ghPath)}" placeholder="movies.json"
-                    class="w-full bg-cinema-bg border border-cinema-border rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-cinema-rose" />
-                </div>
-                <div class="sm:col-span-2">
-                  <label class="block text-xs text-cinema-muted mb-1">GitHub Personal Access Token (Contents: Read &amp; Write)</label>
-                  <input id="setGhToken" type="password" value="${escapeHtml(settings.ghToken)}" placeholder="ghp_... or github_pat_..."
-                    class="w-full bg-cinema-bg border border-cinema-border rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-cinema-rose" />
-                </div>
-              </div>
-
-              <div class="flex flex-wrap gap-2 mt-3">
-                <button id="btnSettingsPush" class="px-3.5 py-2 rounded-xl bg-emerald-500/15 border border-emerald-500/35 text-emerald-300 hover:bg-emerald-500/25 text-xs font-semibold transition cursor-pointer">
-                  Push to GitHub
-                </button>
-                <button id="btnSettingsPull" class="px-3.5 py-2 rounded-xl bg-cinema-elevated border border-cinema-border text-white hover:border-cinema-amber/50 text-xs font-semibold transition cursor-pointer">
-                  Pull from GitHub
-                </button>
-              </div>
-            </section>
-
-            <!-- 4. Local Backup & Sync Missing -->
-            <section class="pt-4 border-t border-cinema-border/70">
-              <h3 class="text-sm font-semibold text-white mb-2.5">Data &amp; Maintenance</h3>
-              <div class="flex flex-wrap gap-2">
-                <button id="btnExportJson" class="px-3.5 py-2 rounded-xl bg-cinema-elevated border border-cinema-border text-xs font-medium text-white hover:border-cinema-rose/50 transition cursor-pointer">
-                  Export movies.json
-                </button>
-                <button id="btnImportJson" class="px-3.5 py-2 rounded-xl bg-cinema-elevated border border-cinema-border text-xs font-medium text-white hover:border-cinema-rose/50 transition cursor-pointer">
-                  Import JSON
-                </button>
-                <button id="btnSettingsSyncMissing" class="px-3.5 py-2 rounded-xl bg-cinema-elevated border border-cinema-border text-xs font-medium text-cinema-amber hover:border-cinema-amber/60 transition cursor-pointer">
-                  Sync Missing Metadata
-                </button>
-              </div>
-            </section>
+            </div>
           </div>
 
-          <!-- Save Footer -->
-          <div class="flex justify-end gap-2 mt-6 pt-4 border-t border-cinema-border">
-            <button onclick="closeModal()" class="px-4 py-2 rounded-xl bg-cinema-elevated text-sm text-cinema-muted hover:text-white transition cursor-pointer">Close</button>
-            <button id="btnSaveSettings" class="px-5 py-2 rounded-xl bg-gradient-to-r from-cinema-rose to-cinema-amber text-[#121014] font-semibold text-sm hover:brightness-110 transition cursor-pointer">
-              Save Settings
-            </button>
+          <!-- TAB 2: GITHUB SYNC -->
+          <div id="stab-github" class="settings-panel hidden mt-5 space-y-4">
+            <div class="p-4 rounded-2xl bg-paper border-2 border-ink space-y-3">
+              <div>
+                <h3 class="font-serif font-bold text-base text-ink">Zero-Database GitHub Pages Sync</h3>
+                <p class="text-xs text-inkSoft mt-0.5">
+                  Commit <code class="font-mono bg-buttercup/60 px-1 rounded">movies.json</code> directly to your repository so both of you share one live movie shelf on GitHub Pages.
+                </p>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-ink mb-1">Repository (owner/repo)</label>
+                <input id="setGhRepo" type="text" value="${escapeHtml(settings.ghRepo)}" placeholder="username/our-movie-shelf" class="retro-input w-full rounded-xl px-3.5 py-2 text-sm" />
+              </div>
+
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-semibold text-ink mb-1">Branch</label>
+                  <input id="setGhBranch" type="text" value="${escapeHtml(settings.ghBranch)}" placeholder="main" class="retro-input w-full rounded-xl px-3.5 py-2 text-sm" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-ink mb-1">File Path</label>
+                  <input id="setGhPath" type="text" value="${escapeHtml(settings.ghPath)}" placeholder="movies.json" class="retro-input w-full rounded-xl px-3.5 py-2 text-sm" />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-ink mb-1">GitHub Personal Access Token (Contents: Read &amp; Write)</label>
+                <input id="setGhToken" type="password" value="${escapeHtml(settings.ghToken)}" placeholder="github_pat_... or ghp_..." class="retro-input w-full rounded-xl px-3.5 py-2 text-sm" />
+              </div>
+
+              <div class="flex flex-wrap gap-2.5 pt-2">
+                <button id="btnModalPushGh" class="retro-btn px-4 py-2 rounded-xl bg-pistachio text-ink font-semibold text-xs sm:text-sm cursor-pointer">
+                  ↑ Push to GitHub
+                </button>
+                <button id="btnModalPullGh" class="retro-btn px-4 py-2 rounded-xl bg-lavender text-ink font-semibold text-xs sm:text-sm cursor-pointer">
+                  ↓ Pull from GitHub
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: BACKUP & MAINTENANCE -->
+          <div id="stab-backup" class="settings-panel hidden mt-5 space-y-4">
+            <div class="p-4 rounded-2xl bg-paper border-2 border-ink space-y-3">
+              <h3 class="font-serif font-bold text-base text-ink">Local JSON Backup &amp; Poster Sync</h3>
+              <p class="text-xs text-inkSoft">
+                Export your shelf as <code class="font-mono">movies.json</code> to drop right next to <code class="font-mono">index.html</code> on GitHub Pages, or import a backup anytime.
+              </p>
+              <div class="flex flex-wrap gap-2.5 pt-1">
+                <button id="btnExportJson" class="retro-btn px-4 py-2 rounded-xl bg-buttercup text-ink font-semibold text-xs sm:text-sm cursor-pointer">
+                  ⬇ Export movies.json
+                </button>
+                <button id="btnImportJson" class="retro-btn px-4 py-2 rounded-xl bg-strawberry/80 text-ink font-semibold text-xs sm:text-sm cursor-pointer">
+                  ⬆ Import JSON
+                </button>
+                <button id="btnModalSyncPosters" class="retro-btn px-4 py-2 rounded-xl bg-pistachio text-ink font-semibold text-xs sm:text-sm cursor-pointer">
+                  ✿ Sync Missing Posters
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer Save -->
+          <div class="flex justify-end gap-2 mt-6 pt-4 border-t-2 border-dashed border-ink/25">
+            <button onclick="closeModal()" class="retro-btn px-4 py-2 rounded-xl bg-paper text-ink text-sm font-semibold cursor-pointer">Close</button>
+            <button id="btnSaveSettings" class="retro-btn px-5 py-2 rounded-xl bg-coral text-cream text-sm font-semibold cursor-pointer">Save Settings ✿</button>
           </div>
         </div>
       `);
 
-      const applyFormToSettings = () => {
+      const activateSettingsTab = (tabName) => {
+        document.querySelectorAll('.settings-panel').forEach((p) => p.classList.add('hidden'));
+        const activePanel = $(`stab-${tabName}`);
+        if (activePanel) activePanel.classList.remove('hidden');
+
+        document.querySelectorAll('.settings-tab').forEach((btn) => {
+          const isCurrent = btn.dataset.stab === tabName;
+          btn.className = `settings-tab py-2 rounded-xl text-xs font-semibold cursor-pointer transition ${
+            isCurrent ? 'bg-buttercup text-ink border-2 border-ink' : 'text-inkSoft border-2 border-transparent hover:text-ink'
+          }`;
+        });
+      };
+
+      document.querySelectorAll('.settings-tab').forEach((btn) => {
+        btn.addEventListener('click', () => activateSettingsTab(btn.dataset.stab));
+      });
+      activateSettingsTab(initialTab);
+
+      const collectSettings = () => {
         settings.tmdbKey = $('setTmdbKey').value.trim();
-        settings.partner1Name = $('setPartner1').value.trim() || 'Mahi';
-        settings.partner2Name = $('setPartner2').value.trim() || 'Me';
+        settings.partner1Name = $('setP1').value.trim() || 'Mahi';
+        settings.partner2Name = $('setP2').value.trim() || 'You';
         settings.ghRepo = $('setGhRepo').value.trim();
         settings.ghBranch = $('setGhBranch').value.trim() || 'main';
         settings.ghPath = $('setGhPath').value.trim() || 'movies.json';
@@ -1600,28 +1892,59 @@
         saveSettings();
       };
 
+      // Test TMDB Connection Button
+      $('btnTestTmdb').onclick = async () => {
+        const rawKey = $('setTmdbKey').value.trim();
+        const fb = $('tmdbTestFeedback');
+        const btn = $('btnTestTmdb');
+        fb.classList.remove('hidden', 'text-emerald-700', 'text-coral');
+
+        const auth = detectTmdbAuth(rawKey);
+        if (!auth) {
+          fb.textContent = '✕ Please paste a TMDB v3 API Key or v4 Read Access Token first.';
+          fb.classList.add('text-coral');
+          return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = 'Testing...';
+        try {
+          await tmdbFetch('/configuration', {}, rawKey);
+          fb.textContent = `✿ Success! Connected using TMDB ${auth.type.toUpperCase()} authentication.`;
+          fb.classList.add('text-emerald-700');
+          showToast(`TMDB ${auth.type.toUpperCase()} connection verified!`, 'success');
+        } catch (err) {
+          fb.textContent = `✕ ${err.message}`;
+          fb.classList.add('text-coral');
+          showToast('TMDB connection test failed.', 'error');
+        } finally {
+          btn.disabled = false;
+          btn.textContent = 'Test Connection';
+        }
+      };
+
       $('btnSaveSettings').onclick = () => {
-        applyFormToSettings();
-        showToast('Settings saved!', 'success');
+        collectSettings();
+        showToast('Settings saved! ✿', 'success');
         closeModal();
       };
 
-      $('btnSettingsPush').onclick = () => {
-        applyFormToSettings();
+      $('btnModalPushGh').onclick = () => {
+        collectSettings();
         closeModal();
         pushToGitHub();
       };
 
-      $('btnSettingsPull').onclick = () => {
-        applyFormToSettings();
+      $('btnModalPullGh').onclick = () => {
+        collectSettings();
         closeModal();
         pullFromGitHub();
       };
 
-      $('btnSettingsSyncMissing').onclick = () => {
-        applyFormToSettings();
+      $('btnModalSyncPosters').onclick = () => {
+        collectSettings();
         closeModal();
-        syncMissingMetadata();
+        syncMissingPosters();
       };
 
       $('btnExportJson').onclick = () => {
@@ -1632,39 +1955,41 @@
         a.download = 'movies.json';
         a.click();
         URL.revokeObjectURL(url);
-        showToast('Exported movies.json', 'success');
+        showToast('Exported movies.json! ✿', 'success');
       };
 
       $('btnImportJson').onclick = () => $('importFileInput').click();
     }
 
     /* =========================================================================
-       EVENT BINDINGS & BOOTSTRAP
+       EVENT LISTENERS & STARTUP
        ========================================================================= */
 
     $('btnAddMovie').addEventListener('click', openAddMovieModal);
     $('btnPickTonight').addEventListener('click', pickForTonight);
-    $('btnSyncMissing').addEventListener('click', syncMissingMetadata);
+    $('btnSyncPosters').addEventListener('click', syncMissingPosters);
     $('btnQuickPush').addEventListener('click', pushToGitHub);
-    $('btnSettings').addEventListener('click', openSettingsModal);
-    $('btnResetFilters').addEventListener('click', resetFilters);
+    $('btnSettings').addEventListener('click', () => openSettingsModal('general'));
+    $('btnClearFilters').addEventListener('click', clearFilters);
 
     $('filterSearch').addEventListener('input', renderApp);
     $('filterGenre').addEventListener('change', renderApp);
-    $('filterStatus').addEventListener('change', renderApp);
+    $('filterMood').addEventListener('change', renderApp);
     $('filterSort').addEventListener('change', renderApp);
 
-    // Handle JSON File Import
+    document.querySelectorAll('.status-pill').forEach((btn) => {
+      btn.addEventListener('click', () => setStatusFilter(btn.dataset.status));
+    });
+
     $('importFileInput').addEventListener('change', async (e) => {
       const file = e.target.files[0];
       if (!file) return;
       try {
-        const text = await file.text();
-        const parsed = JSON.parse(text);
-        if (!Array.isArray(parsed)) throw new Error('Expected a JSON array of movies.');
+        const parsed = JSON.parse(await file.text());
+        if (!Array.isArray(parsed)) throw new Error('File must contain a JSON array of movies.');
         movies = parsed.map((m, i) => normalizeMovie(m, i));
         saveMovies();
-        showToast(`Imported ${movies.length} movies successfully!`, 'success');
+        showToast(`Imported ${movies.length} movies! ✿`, 'success');
         closeModal();
       } catch (err) {
         showToast(`Import failed: ${err.message}`, 'error');
@@ -1672,7 +1997,7 @@
       e.target.value = '';
     });
 
-    // Boot App
+    // Launch!
     initApp();
   </script>
 </body>
