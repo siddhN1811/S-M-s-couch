@@ -449,7 +449,7 @@
     "poster": "https://image.tmdb.org/t/p/w500/7LEI8ulZzO5gy9Ww2NVCrKmHeDZ.jpg",
     "backdrop": "https://image.tmdb.org/t/p/w1280/pYgj8e2Y6RufnSyOA6OnzmxFXxZ.jpg",
     "tmdbRating": 7.1,
-    "watched": false,
+    "watched": true,
     "rating1": null,
     "rating2": 6,
     "note": "Disturbing",
