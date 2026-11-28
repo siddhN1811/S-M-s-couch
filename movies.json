@@ -424,8 +424,8 @@
     "backdrop": "https://image.tmdb.org/t/p/w1280/pYgj8e2Y6RufnSyOA6OnzmxFXxZ.jpg",
     "tmdbRating": 7.1,
     "watched": true,
-    "rating1": null,
-    "rating2": 6,
+    "rating1": 0.5,
+    "rating2": 0.5,
     "note": "Disturbing",
     "addedAt": 1795282058995
   },
